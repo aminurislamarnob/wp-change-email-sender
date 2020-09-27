@@ -85,7 +85,7 @@ function wpces_sender_email_address_field_callback() {
 
 //Plugin settings page section text
 function wpces_email_sender_section_text() {
-	printf('%s You can change WordPress Default Mail Sender Name and Email Address %s', '<p>', '</p>');
+	printf('%s %s %s', '<p>', __('You can change WordPress Default Mail Sender Name and Email Address', 'wp-change-email-sender'), '</p>');
 }
 
 
