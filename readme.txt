@@ -1,10 +1,11 @@
 === WP Change Email Sender ===
-Contributors: aminurislam01
-Tags: wp change email sender, wp change default email sender, wordpress default email sender change, wp default email change, wp default email sender name change, wordpress default email change, wordpress default email sender change, change email sender, wp email sender, email sender, wordpress email sender
+Contributors: aminurislam01, pluginizelab
+Donate link: https://www.buymeacoffee.com/aiarnob
+Tags: wp change email sender, wp change default email sender, wordpress default email sender change, wp default email change, wp default email sender name change
 Requires at least: 3.7.0
-Tested up to: 5.5.1
-Stable tag: trunk
-Requires PHP: 5.6
+Tested up to: 6.4.3
+Stable tag: 2.0
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,6 +19,11 @@ After install go to Settings->General.
 = Plugin Features =
 * Change WordPress default mail sender name.
 * Change WordPress default mail sender email address.
+
+== Screenshots ==
+
+1. Plugin Options
+1. Mail Example
 
 
 == Installation ==
@@ -38,8 +44,3 @@ Go to general settings page from WP admin panel left sidebar menu: Settings->Gen
 
 = Can I change only sender name or email individually? =
 Yes, you can change only mail sender name and email individually.
-
-
-== Contributions ==
-
-Contributors are always welcome. To contribute, just send a pull request over the [Github repo](https://github.com/aminurislamarnob/wp-change-email-sender). Please give us feedback and technical bugs on [GitHub Repo](https://github.com/aminurislamarnob/wp-change-email-sender).

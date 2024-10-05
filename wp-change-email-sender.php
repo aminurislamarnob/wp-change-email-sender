@@ -3,7 +3,7 @@
 Plugin Name: WP Change Email Sender
 Plugin URI: https://wordpress.org/plugins/wp-change-email-sender/
 Description: This plugin which allows you to change WordPress default mail sender name and email address easily.
-Version: 1.0
+Version: 2.0
 Author: Aminur Islam
 Author URI: https://github.com/aminurislamarnob
 License: GPLv2 or later
@@ -74,13 +74,13 @@ add_action('admin_init', 'wpces_email_sender_register');
 //Sender Name field content
 function wpces_sender_name_field_callback(){
     $wpces_email_sender_name_value = get_option('wpces_email_sender_name');
-	printf('<input name="wpces_email_sender_name" type="text" class="regular-text" value="%s" placeholder="%s"/>', $wpces_email_sender_name_value, __('Mail Sender Name', 'wp-change-email-sender'));
+	printf('<input name="wpces_email_sender_name" type="text" class="regular-text" value="%s" placeholder="%s"/>', esc_attr($wpces_email_sender_name_value), __('Mail Sender Name', 'wp-change-email-sender'));
 }
 
 //Sender Email field content
 function wpces_sender_email_address_field_callback() {
     $wpces_sender_email_address_value = get_option('wpces_sender_email_address');
-	printf('<input name="wpces_sender_email_address" type="email" class="regular-text" value="%s" placeholder="info@yourdomain.com"/>', $wpces_sender_email_address_value);
+	printf('<input name="wpces_sender_email_address" type="email" class="regular-text" value="%s" placeholder="info@yourdomain.com"/>', esc_attr($wpces_sender_email_address_value));
 }
 
 //Plugin settings page section text
@@ -95,7 +95,7 @@ function wpces_email_sender_section_text() {
 add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'wpces_mail_sender_action_links' );
 function wpces_mail_sender_action_links( $links ){
     $wpces_mail_sender_plugin_action_links = array(
-    '<a href="' . admin_url( 'options-general.php' ) . '"> '. __('Settings', 'wp-change-email-sender') . '</a>',
+    '<a href="' . esc_url(admin_url( 'options-general.php' )) . '"> '. __('Settings', 'wp-change-email-sender') . '</a>',
     );
     return array_merge( $links, $wpces_mail_sender_plugin_action_links );
 }
@@ -107,7 +107,7 @@ function wpces_mail_sender_action_links( $links ){
 add_filter('wp_mail_from', 'wpces_mail_sender_from_email');
 function wpces_mail_sender_from_email($old) {
     $wpces_sender_email_address_value = get_option('wpces_sender_email_address');
-	return $wpces_sender_email_address_value;
+	return esc_html( $wpces_sender_email_address_value );
 }
 
 
@@ -117,5 +117,5 @@ function wpces_mail_sender_from_email($old) {
 add_filter('wp_mail_from_name', 'wpces_mail_sender_from_email_name');
 function wpces_mail_sender_from_email_name($old) {
     $wpces_email_sender_name_value = get_option('wpces_email_sender_name');
-	return $wpces_email_sender_name_value;
+	return esc_html( $wpces_email_sender_name_value );
 }
