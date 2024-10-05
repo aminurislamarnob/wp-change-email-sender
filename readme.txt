@@ -44,3 +44,10 @@ Go to general settings page from WP admin panel left sidebar menu: Settings->Gen
 
 = Can I change only sender name or email individually? =
 Yes, you can change only mail sender name and email individually.
+
+
+== Changelog ==
+
+= 3.0 =
+* Few security update.
+* Checked with latest version of WordPress.
