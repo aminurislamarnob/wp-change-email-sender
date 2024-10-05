@@ -1,0 +1,18 @@
+name: Restrict Tag Creation
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  restrict-tags:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check User Permissions
+        run: |
+          user=$(git log -1 --pretty=format:'%an')
+          if [ "$user" != "Repository Owner" ]; then
+            echo "Only repository owners can create tags."
+            exit 1
+          fi
