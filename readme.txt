@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/aiarnob
 Tags: wp change email sender, wp change default email sender, wordpress default email sender change, wp default email change, wp default email sender name change
 Requires at least: 5.8
 Tested up to: 6.9
-Stable tag: 3.1
+Stable tag: 3.2
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -44,6 +44,9 @@ Go to general settings page from WP admin panel left sidebar menu: Settings->Gen
 
 = Can I change only sender name or email individually? =
 Yes, you can change only mail sender name and email individually.
+
+== Support ==
+If you find this plugin useful, consider supporting its development through a [donation](https://www.buymeacoffee.com/aiarnob).
 
 
 == Changelog ==
