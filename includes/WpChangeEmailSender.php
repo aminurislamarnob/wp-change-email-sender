@@ -143,6 +143,8 @@ final class WpChangeEmailSender {
      * @return void
      */
     public function init_plugin() {
+        ( new Upgrader() )->maybe_upgrade();
+
         $this->includes();
         $this->init_hooks();
 
