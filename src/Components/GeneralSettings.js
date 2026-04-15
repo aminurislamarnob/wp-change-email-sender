@@ -5,6 +5,8 @@ import apiFetch from '@wordpress/api-fetch';
 
 const GeneralSettings = () => {
 	const [ pages, setPages ] = useState( [] );
+	const [ senderName, setSenderName ] = useState( '' );
+	const [ senderEmail, setSenderEmail ] = useState( '' );
 	const [ dashboardPage, setDashboardPage ] = useState( '' );
 	const [ pageTitle, setPageTitle ] = useState( '' );
 	const [ isLoading, setIsLoading ] = useState( false );
@@ -19,6 +21,12 @@ const GeneralSettings = () => {
                     path: '/wp-change-email-sender/v1/settings',
                 });
 
+				if( response.wp_change_email_sender_name ){
+					setSenderName(response.wp_change_email_sender_name);
+				}
+				if( response.wp_change_email_sender_email_address ){
+					setSenderEmail(response.wp_change_email_sender_email_address);
+				}
 				if( response.wp_change_email_sender_dashboard_page_id ){
                 	setDashboardPage(response.wp_change_email_sender_dashboard_page_id);
 				}
@@ -35,7 +43,7 @@ const GeneralSettings = () => {
 
         fetchSettings();
     }, []);
-	
+
 	// Fetch 100 pages.
 	useEffect(() => {
 		setIsLoading( true );
@@ -52,7 +60,7 @@ const GeneralSettings = () => {
 				}));
 
 				options.unshift({ value: '', label: __( 'Select dashboard page', 'wp-change-email-sender' ), disabled: true });
-				
+
                 setPages(options);
                 setError(null); // Clear any previous errors
 				setIsLoading( false );
@@ -74,6 +82,8 @@ const GeneralSettings = () => {
 				path: '/wp-change-email-sender/v1/settings',
 				method: 'POST',
 				data: {
+					wp_change_email_sender_name: senderName,
+					wp_change_email_sender_email_address: senderEmail,
 					wp_change_email_sender_dashboard_page_id: dashboardPage,
 					wp_change_email_sender_page_title: pageTitle,
 				},
@@ -88,7 +98,7 @@ const GeneralSettings = () => {
 			setMessage( '' );
 			setIsLoading( false );
 		}
-		
+
 	};
 
 	return (
@@ -126,6 +136,21 @@ const GeneralSettings = () => {
 			<form onSubmit={ handleSubmit }>
 				<Card>
 					<CardBody>
+						<TextControl
+							label={ __( 'Email Sender Name', 'wp-change-email-sender' ) }
+							value={ senderName }
+							onChange={ setSenderName }
+							placeholder={ __( 'Mail Sender Name', 'wp-change-email-sender' ) }
+							help={ __( 'The "From" name used for outgoing WordPress emails.', 'wp-change-email-sender' ) }
+						/>
+						<TextControl
+							label={ __( 'Sender Email Address', 'wp-change-email-sender' ) }
+							type="email"
+							value={ senderEmail }
+							onChange={ setSenderEmail }
+							placeholder="info@yourdomain.com"
+							help={ __( 'The "From" address used for outgoing WordPress emails.', 'wp-change-email-sender' ) }
+						/>
 						<SelectControl
 							label={ __( 'Select Dashboard Page', 'wp-change-email-sender' ) }
 							value={ dashboardPage }

@@ -81,6 +81,14 @@ class SettingsController extends WP_REST_Controller {
 	public function update_settings( $request ) {
 		$wp_change_email_sender_settings = get_option( 'wp_change_email_sender_settings', array() );
 
+		if ( $request->has_param( 'wp_change_email_sender_name' ) ) {
+			$wp_change_email_sender_settings['wp_change_email_sender_name'] = sanitize_text_field( $request->get_param( 'wp_change_email_sender_name' ) );
+		}
+
+		if ( $request->has_param( 'wp_change_email_sender_email_address' ) ) {
+			$wp_change_email_sender_settings['wp_change_email_sender_email_address'] = sanitize_email( $request->get_param( 'wp_change_email_sender_email_address' ) );
+		}
+
 		if ( $request->has_param( 'wp_change_email_sender_dashboard_page_id' ) ) {
 			$wp_change_email_sender_settings['wp_change_email_sender_dashboard_page_id'] = sanitize_text_field( $request->get_param( 'wp_change_email_sender_dashboard_page_id' ) );
 		}
@@ -137,6 +145,17 @@ class SettingsController extends WP_REST_Controller {
 			'title'      => 'settings',
 			'type'       => 'object',
 			'properties' => array(
+				'wp_change_email_sender_name'       => array(
+					'description' => __( 'Email Sender Name.', 'wp-change-email-sender' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+				),
+				'wp_change_email_sender_email_address' => array(
+					'description' => __( 'Sender Email Address.', 'wp-change-email-sender' ),
+					'type'        => 'string',
+					'format'      => 'email',
+					'context'     => array( 'view', 'edit' ),
+				),
 				'wp_change_email_sender_dashboard_page_id' => array(
 					'description' => __( 'Dashboard Page.', 'wp-change-email-sender' ),
 					'type'        => 'string',
