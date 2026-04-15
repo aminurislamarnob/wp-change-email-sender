@@ -1,0 +1,156 @@
+.welabs-admin-settings-setting-wrapper {
+    display: flex;
+}
+
+.menu-title {
+    font-size: 14px;
+    line-height: 1.4615384615;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #121116;
+}
+
+.menu-title-description {
+    margin-top: 2px;
+    color: #72777c;
+    font-size: 13px;
+    line-height: 1.2307692308;
+    transition: all 150ms ease-out;
+    -webkit-transition: all 150ms ease-out;
+}
+
+.welabs-admin-settings-sidebar-nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.welabs-admin-settings-setting-wrapper main {
+    position: relative;
+    background: #fff;
+    padding: 32px 24px;
+    flex: 1 1 auto;
+}
+.welabs-admin-settings-setting-wrapper {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #c8d7e1;
+}
+
+.welabs-admin-settings-setting-wrapper section.welabs-admin-settings-sidebar-nav {
+    background: #F9FAFB;
+    padding: 20px 0 20px 16px;
+}
+
+.sidebar-logo {
+    padding: 0 0 25px;
+    text-align: center;
+}
+
+.welabs-admin-settings-sidebar-nav nav ul li a {
+    position: relative;
+    display: block;
+    padding: 16px 44px 18px 20px;
+    text-decoration: none;
+    color: #121116;
+    border-top: 1px solid #e0e4e9;
+    border-left: 2px solid transparent;
+    overflow: hidden;
+    transition: all 100ms ease-out;
+    -webkit-transition: all 100ms ease-out;
+}
+
+.welabs-admin-settings-sidebar-nav nav ul li a:focus, .welabs-admin-settings-sidebar-nav nav ul li a:visited, .welabs-admin-settings-sidebar-nav nav ul li a:active{
+    outline: none;
+    box-shadow: none;
+}
+
+.welabs-admin-settings-sidebar-nav nav ul li a .menu-icon {
+    position: absolute;
+    top: calc(50% - 12px);
+    right: 18px;
+    text-align: center;
+    font-size: 1.4375rem;
+    line-height: 1;
+    color: #121116;
+    opacity: .4;
+    transition: all 150ms ease-out;
+    -webkit-transition: all 150ms ease-out;
+}
+.menu-icon svg {
+    width: 22px;
+    height: 22px;
+}
+.settings-header {
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid #e0e4e9;
+    padding-bottom: 24px;
+    margin-bottom: 30px;
+}
+
+.settings-header h2 {
+    font-size: 24px;
+    margin: 0;
+    line-height: 1;
+    color: #121116;
+    font-weight: 600;
+}
+
+.settings-header::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 48px;
+    height: 2px;
+    bottom: -1px;
+    left: 0;
+    background: #007CF5;
+}
+.settings-header-icon {
+    display: inline-flex;
+    width: 48px;
+    height: 48px;
+    margin-right: 24px;
+    background: rgb(0 124 245 / 10%);
+    color: #007CF5;
+    text-align: center;
+    border-radius: 3px;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-header-icon svg {
+    width: 22px;
+    height: 22px;
+}
+.welabs-admin-settings-sidebar-nav nav ul li.active a {
+    color: #121116;
+    background: #fff;
+    border-left: 2px solid #007CF5;
+}
+
+.welabs-admin-settings-sidebar-nav nav ul li {
+    margin: 0;
+}
+.welabs-admin-settings-setting-wrapper label {
+    font-size: 14px!important;
+    font-style: normal;
+    font-weight: 600!important;
+    display: block!important;
+    text-transform: capitalize!important;
+    margin-bottom: 10px;
+}
+.welabs-admin-settings-setting-wrapper .components-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.welabs-admin-settings-setting-wrapper .components-button.is-primary {
+    width: fit-content;
+    justify-content: center;
+    height: 38px;
+}
+.welabs-admin-settings-setting-wrapper .components-input-base.components-select-control {
+    gap: 0;
+}

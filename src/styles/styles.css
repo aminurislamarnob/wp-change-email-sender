@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your custom styles here */
+.table-view-list th#gmc_status {
+    width: 120px;
+}
