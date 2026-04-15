@@ -57,6 +57,7 @@ class Settings {
 	public function settings_page_content() {
 		?>
 		<div class="wrap">
+			<h1><?php esc_html_e( 'WP Change Email Sender Settings', 'wp-change-email-sender' ); ?></h1>
 			<div id="WpChangeEmailSenderSettings"></div>
 		</div>
 		<?php

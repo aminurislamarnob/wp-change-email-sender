@@ -89,24 +89,8 @@ class SettingsController extends WP_REST_Controller {
 			$wp_change_email_sender_settings['wp_change_email_sender_email_address'] = sanitize_email( $request->get_param( 'wp_change_email_sender_email_address' ) );
 		}
 
-		if ( $request->has_param( 'wp_change_email_sender_dashboard_page_id' ) ) {
-			$wp_change_email_sender_settings['wp_change_email_sender_dashboard_page_id'] = sanitize_text_field( $request->get_param( 'wp_change_email_sender_dashboard_page_id' ) );
-		}
-
 		if ( $request->has_param( 'wp_change_email_sender_product_per_page' ) ) {
 			$wp_change_email_sender_settings['wp_change_email_sender_product_per_page'] = sanitize_text_field( $request->get_param( 'wp_change_email_sender_product_per_page' ) );
-		}
-
-		if ( $request->has_param( 'wp_change_email_sender_page_title' ) ) {
-			$wp_change_email_sender_settings['wp_change_email_sender_page_title'] = sanitize_text_field( $request->get_param( 'wp_change_email_sender_page_title' ) );
-		}
-
-		if ( $request->has_param( 'wp_change_email_sender_primary_color' ) ) {
-			$wp_change_email_sender_settings['wp_change_email_sender_primary_color'] = sanitize_text_field( $request->get_param( 'wp_change_email_sender_primary_color' ) );
-		}
-
-		if ( $request->has_param( 'wp_change_email_sender_text_color' ) ) {
-			$wp_change_email_sender_settings['wp_change_email_sender_text_color'] = sanitize_text_field( $request->get_param( 'wp_change_email_sender_text_color' ) );
 		}
 
 		update_option( 'wp_change_email_sender_settings', $wp_change_email_sender_settings );
@@ -145,39 +129,19 @@ class SettingsController extends WP_REST_Controller {
 			'title'      => 'settings',
 			'type'       => 'object',
 			'properties' => array(
-				'wp_change_email_sender_name'       => array(
+				'wp_change_email_sender_name'             => array(
 					'description' => __( 'Email Sender Name.', 'wp-change-email-sender' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
-				'wp_change_email_sender_email_address' => array(
+				'wp_change_email_sender_email_address'    => array(
 					'description' => __( 'Sender Email Address.', 'wp-change-email-sender' ),
 					'type'        => 'string',
 					'format'      => 'email',
 					'context'     => array( 'view', 'edit' ),
 				),
-				'wp_change_email_sender_dashboard_page_id' => array(
-					'description' => __( 'Dashboard Page.', 'wp-change-email-sender' ),
-					'type'        => 'string',
-					'context'     => array( 'view', 'edit' ),
-				),
-				'wp_change_email_sender_product_per_page'  => array(
+				'wp_change_email_sender_product_per_page' => array(
 					'description' => __( 'Products Per Page.', 'wp-change-email-sender' ),
-					'type'        => 'string',
-					'context'     => array( 'view', 'edit' ),
-				),
-				'wp_change_email_sender_page_title'  => array(
-					'description' => __( 'Page Title.', 'wp-change-email-sender' ),
-					'type'        => 'string',
-					'context'     => array( 'view', 'edit' ),
-				),
-				'wp_change_email_sender_primary_color'  => array(
-					'description' => __( 'Primary Color.', 'wp-change-email-sender' ),
-					'type'        => 'string',
-					'context'     => array( 'view', 'edit' ),
-				),
-				'wp_change_email_sender_text_color'  => array(
-					'description' => __( 'Text Color.', 'wp-change-email-sender' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),

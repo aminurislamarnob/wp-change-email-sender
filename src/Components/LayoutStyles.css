@@ -1,4 +1,4 @@
-.welabs-admin-settings-setting-wrapper {
+.wpces-setting-wrapper {
     display: flex;
 }
 
@@ -7,7 +7,7 @@
     line-height: 1.4615384615;
     font-weight: bold;
     text-transform: uppercase;
-    color: #121116;
+    color: #0A2540;
 }
 
 .menu-title-description {
@@ -19,39 +19,31 @@
     -webkit-transition: all 150ms ease-out;
 }
 
-.welabs-admin-settings-sidebar-nav {
+.wpces-sidebar-nav {
     display: flex;
     flex-direction: column;
+    flex: 0 0 225px;
 }
 
-.welabs-admin-settings-setting-wrapper main {
+.wpces-setting-wrapper main {
     position: relative;
     background: #fff;
     padding: 32px 24px;
     flex: 1 1 auto;
-}
-.welabs-admin-settings-setting-wrapper {
-    background: #fff;
-    padding: 20px;
-    border: 1px solid #c8d7e1;
-}
-
-.welabs-admin-settings-setting-wrapper section.welabs-admin-settings-sidebar-nav {
-    background: #F9FAFB;
-    padding: 20px 0 20px 16px;
+    max-width: 1230px;
 }
 
 .sidebar-logo {
-    padding: 0 0 25px;
+    padding: 32px 0 24px;
     text-align: center;
 }
 
-.welabs-admin-settings-sidebar-nav nav ul li a {
+.wpces-sidebar-nav nav ul li a {
     position: relative;
     display: block;
     padding: 16px 44px 18px 20px;
     text-decoration: none;
-    color: #121116;
+    color: #0A2540;
     border-top: 1px solid #e0e4e9;
     border-left: 2px solid transparent;
     overflow: hidden;
@@ -59,19 +51,19 @@
     -webkit-transition: all 100ms ease-out;
 }
 
-.welabs-admin-settings-sidebar-nav nav ul li a:focus, .welabs-admin-settings-sidebar-nav nav ul li a:visited, .welabs-admin-settings-sidebar-nav nav ul li a:active{
+.wpces-sidebar-nav nav ul li a:focus, .wpces-sidebar-nav nav ul li a:visited, .wpces-sidebar-nav nav ul li a:active{
     outline: none;
     box-shadow: none;
 }
 
-.welabs-admin-settings-sidebar-nav nav ul li a .menu-icon {
+.wpces-sidebar-nav nav ul li a .menu-icon {
     position: absolute;
     top: calc(50% - 12px);
     right: 18px;
     text-align: center;
     font-size: 1.4375rem;
     line-height: 1;
-    color: #121116;
+    color: #0A2540;
     opacity: .4;
     transition: all 150ms ease-out;
     -webkit-transition: all 150ms ease-out;
@@ -93,7 +85,7 @@
     font-size: 24px;
     margin: 0;
     line-height: 1;
-    color: #121116;
+    color: #0A2540;
     font-weight: 600;
 }
 
@@ -105,15 +97,15 @@
     height: 2px;
     bottom: -1px;
     left: 0;
-    background: #007CF5;
+    background: #5539FD;
 }
 .settings-header-icon {
     display: inline-flex;
     width: 48px;
     height: 48px;
     margin-right: 24px;
-    background: rgb(0 124 245 / 10%);
-    color: #007CF5;
+    background: rgb(85 57 253 / 20%);
+    color: #5539FD;
     text-align: center;
     border-radius: 3px;
     align-items: center;
@@ -124,33 +116,171 @@
     width: 22px;
     height: 22px;
 }
-.welabs-admin-settings-sidebar-nav nav ul li.active a {
-    color: #121116;
+.wpces-sidebar-nav nav ul li.active a {
+    color: #0A2540;
     background: #fff;
-    border-left: 2px solid #007CF5;
+    border-left: 2px solid #5539FD;
+}
+.wpces-setting-wrapper label{
+    color: #0A2540;
 }
 
-.welabs-admin-settings-sidebar-nav nav ul li {
+.wpces-sidebar-nav nav ul li {
     margin: 0;
 }
-.welabs-admin-settings-setting-wrapper label {
-    font-size: 14px!important;
-    font-style: normal;
-    font-weight: 600!important;
-    display: block!important;
+.wpces-setting-wrapper .components-button.is-primary{
+    background: #5539FD;
+}
+
+.wpces-setting-wrapper .components-button.is-primary:hover{
+    background: #635BFF;
+}
+.wpces-setting-wrapper .components-form-toggle .components-form-toggle__thumb{
+    background-color: #0A2540;
+}
+.wpces-setting-wrapper .components-form-toggle.is-checked .components-form-toggle__thumb{
+    background-color: #fff;
+}
+.wpces-setting-wrapper .components-form-toggle .components-form-toggle__track{
+    border-color: #0A2540;
+}
+.wpces-setting-wrapper .components-form-toggle.is-checked .components-form-toggle__track{
+    background: #5539FD;
+    border-color: #5539FD;
+}
+.wpces-setting-wrapper .components-form-toggle .components-form-toggle__input:focus+.components-form-toggle__track{
+    box-shadow: none;
+}
+/* Color settings: label left, swatch + dropdown right (screenshot style) */
+.wpces-color-control {
+    margin-bottom: 30px;
+}
+.wpces-color-control .components-base-control__field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 12px;
+}
+.wpces-color-control .components-base-control__label, .wpces-settings-group label.components-base-control__label, .wpces-settings-group label.components-input-control__label, .wpces-settings-group.admin-area-access label.components-toggle-control__label {
+    margin-bottom: 0;
     text-transform: capitalize!important;
+    font-size: 13px!important;
+    font-weight: 500;
+}
+.wpces-settings-group label.components-base-control__label{
     margin-bottom: 10px;
 }
-.welabs-admin-settings-setting-wrapper .components-card-body {
+.wpces-color-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 80px;
+    padding: 4px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+}
+.wpces-color-toggle:hover {
+    border-color: #999;
+}
+.wpces-color-toggle .component-color-indicator {
+    flex-shrink: 0;
+}
+.wpces-color-toggle svg {
+    margin-left: auto;
+    width: 20px;
+    height: 20px;
+    opacity: 0.6;
+}
+.wpces-color-picker-popover {
+    padding: 12px;
+}
+.wpces-color-picker-dropdown .components-popover__content {
+    padding: 0;
+}
+
+/* Section heading and description (settings subsections) */
+.wpces-section-title {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.wpces-section-title:first-child {
+    margin-top: 0;
+}
+
+.wpces-section-description {
+    margin-bottom: 12px;
+    color: #757575;
+    font-size: 12px;
+}
+.wpces-settings-group {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5e7eb;
+}
+.wpces-settings-group p, .wpces-settings-group.admin-area-access .components-base-control.components-toggle-control {
+    margin: 0!important;
+}
+.wpces-settings-sec-header {
+    margin-bottom: 20px;
+}
+
+.wpces-settings-sec-header h3 {
+    margin-bottom: 5px;
+}
+
+.wpces-colors-form .wpces-settings-group {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5e7eb;
+    border-right: 1px solid #e5e7eb;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-bottom: 0;
+    padding-top: 20px;
+}
+.wpces-colors-form-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-bottom: 20px;
+}
+
+.wpces-sidebar-image-control__label {
+    font-weight: 600;
+    font-size: 13px;
+    margin: 0 0 4px;
+}
+
+.wpces-sidebar-image-control__help {
+    margin: 0 0 12px;
+    font-size: 13px;
+    color: #646970;
+    line-height: 1.5;
+}
+
+.wpces-sidebar-image-control__preview {
+    margin-bottom: 12px;
+}
+
+.wpces-sidebar-image-control__preview img {
+    display: block;
+    max-width: 200px;
+    max-height: 120px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 4px;
+    background: #fff;
+}
+
+.wpces-sidebar-image-control__actions {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-.welabs-admin-settings-setting-wrapper .components-button.is-primary {
-    width: fit-content;
-    justify-content: center;
-    height: 38px;
-}
-.welabs-admin-settings-setting-wrapper .components-input-base.components-select-control {
-    gap: 0;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
 }
