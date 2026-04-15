@@ -284,3 +284,10 @@
     gap: 8px;
     align-items: center;
 }
+
+.wpces-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+}

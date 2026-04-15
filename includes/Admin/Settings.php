@@ -70,29 +70,44 @@ class Settings {
 	 */
 	public function enqueue_admin_settings_scripts() {
 		$screen = get_current_screen();
-		
-		if ( 'toplevel_page_wp_change_email_sender-settings' == $screen->id ) {
-			$asset_file_path = WP_CHANGE_EMAIL_SENDER_DIR . '/assets/build/admin/script.asset.php';
 
-			if( file_exists( $asset_file_path ) ) {
-				$asset_file = include $asset_file_path;
-				wp_enqueue_script(
-					'wp_change_email_sender_admin_page',
-					WP_CHANGE_EMAIL_SENDER_PLUGIN_ASSET . '/build/admin/script.js',
-					$asset_file['dependencies'],
-					$asset_file['version'],
-					true
-				);
-	
-				wp_enqueue_style(
-					'wp_change_email_sender_admin_styles',
-					WP_CHANGE_EMAIL_SENDER_PLUGIN_ASSET . '/build/admin.css',
-					array( 'wp-components' ),
-					$asset_file['version'] ?? null,
-				);
-	
-				wp_enqueue_style( 'wp-components' );
-			}
+		if ( 'toplevel_page_wp_change_email_sender-settings' !== $screen->id ) {
+			return;
 		}
+
+		$asset_file_path = WP_CHANGE_EMAIL_SENDER_DIR . '/assets/build/admin/script.asset.php';
+
+		if ( ! file_exists( $asset_file_path ) ) {
+			return;
+		}
+
+		$asset_file = include $asset_file_path;
+		$handle     = 'wp_change_email_sender_admin_page';
+
+		wp_enqueue_script(
+			$handle,
+			WP_CHANGE_EMAIL_SENDER_PLUGIN_ASSET . '/build/admin/script.js',
+			$asset_file['dependencies'],
+			$asset_file['version'],
+			true
+		);
+
+		wp_add_inline_script(
+			$handle,
+			sprintf(
+				'window.__wpcesBuildURL = %s;',
+				wp_json_encode( WP_CHANGE_EMAIL_SENDER_PLUGIN_ASSET . '/build/' )
+			),
+			'before'
+		);
+
+		wp_enqueue_style(
+			'wp_change_email_sender_admin_styles',
+			WP_CHANGE_EMAIL_SENDER_PLUGIN_ASSET . '/build/admin.css',
+			array( 'wp-components' ),
+			$asset_file['version'],
+		);
+
+		wp_enqueue_style( 'wp-components' );
 	}
 }

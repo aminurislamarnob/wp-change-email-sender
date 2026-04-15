@@ -1,30 +1,64 @@
-import React from '@wordpress/element';
-import { createRoot } from 'react-dom/client';
+/**
+ * Must be first — sets __webpack_public_path__ for lazy-loaded chunks.
+ */
+import './public-path';
+
+/**
+ * WordPress dependencies
+ */
+import { lazy, Suspense, createRoot } from '@wordpress/element';
+import { Spinner } from '@wordpress/components';
+
+/**
+ * External dependencies
+ */
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+
+/**
+ * Internal dependencies
+ */
 import './styles/styles.css';
 import './styles/index.css';
 import './Components/LayoutStyles.css';
+import { SettingsProvider } from './context/SettingsContext';
 import Layout from './Components/Layout';
 import GeneralSettings from './Components/GeneralSettings';
-import ProductSettings from './Components/ProductSettings';
+
+const ProductSettings = lazy( () =>
+	import(
+		/* webpackChunkName: "product-settings" */ './Components/ProductSettings'
+	)
+);
+
+const LazyFallback = () => (
+	<div className="wpces-loading">
+		<Spinner />
+	</div>
+);
 
 const App = () => (
 	<Router>
-		<Routes>
-			<Route path="/" element={ <Layout /> }>
-				<Route index element={ <GeneralSettings /> } />
-				<Route
-					path="product-settings"
-					element={ <ProductSettings /> }
-				/>
-				{ /* Add more routes here */ }
-			</Route>
-		</Routes>
+		<SettingsProvider>
+			<Suspense fallback={ <LazyFallback /> }>
+				<Routes>
+					<Route path="/" element={ <Layout /> }>
+						<Route index element={ <GeneralSettings /> } />
+						<Route
+							path="product-settings"
+							element={ <ProductSettings /> }
+						/>
+					</Route>
+				</Routes>
+			</Suspense>
+		</SettingsProvider>
 	</Router>
 );
 
 document.addEventListener( 'DOMContentLoaded', () => {
 	const container = document.getElementById( 'WpChangeEmailSenderSettings' );
-	const root = createRoot( container );
-	root.render( <App /> );
+
+	if ( container ) {
+		const root = createRoot( container );
+		root.render( <App /> );
+	}
 } );
