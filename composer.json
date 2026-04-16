@@ -1,44 +1,44 @@
 {
-    "name": "welabs/wp-change-email-sender",
-    "description": "This plugin which allows you to change WordPress default mail sender name and email address easily.",
-    "license": "GPLv2 or later",
-    "autoload": {
-        "psr-4": {
-            "WeLabs\\WpChangeEmailSender\\": "includes/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Aminur Islam",
-            "email": "contact@welabs.dev",
-            "homepage": "https://wordpress.org/plugins/wp-change-email-sender/"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require-dev": {
-        "wp-coding-standards/wpcs": "dev-develop",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
-        "tareq1988/wp-php-cs-fixer": "dev-master",
-        "phpcompatibility/phpcompatibility-wp": "dev-master",
-        "phpunit/phpunit": "~8.5",
-        "wp-phpunit/wp-phpunit": "^6.1",
-        "yoast/phpunit-polyfills": "^1.0",
-        "symfony/var-dumper": "^5.4"
-    },
-   "scripts": {
-        "phpcs": [
-            "vendor/bin/phpcs -p -s"
-        ],
-        "phpcs:report": [
-            "vendor/bin/phpcs --report-file='phpcs-report.txt'"
-        ],
-        "phpcbf": [
-            "vendor/bin/phpcbf -p"
-        ]
-    },
-    "config": {
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
-        }
-    }
+	"name": "welabs/wp-change-email-sender",
+	"description": "This plugin which allows you to change WordPress default mail sender name and email address easily.",
+	"license": "GPLv2 or later",
+	"autoload": {
+		"psr-4": {
+			"WeLabs\\WpChangeEmailSender\\": "includes/"
+		}
+	},
+	"authors": [
+		{
+			"name": "Aminur Islam",
+			"email": "contact@welabs.dev",
+			"homepage": "https://wordpress.org/plugins/wp-change-email-sender/"
+		}
+	],
+	"minimum-stability": "dev",
+	"require-dev": {
+		"wp-coding-standards/wpcs": "dev-develop",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
+		"tareq1988/wp-php-cs-fixer": "dev-master",
+		"phpcompatibility/phpcompatibility-wp": "dev-master",
+		"phpunit/phpunit": "~8.5",
+		"wp-phpunit/wp-phpunit": "^6.1",
+		"yoast/phpunit-polyfills": "^1.0",
+		"symfony/var-dumper": "^5.4"
+	},
+	"scripts": {
+		"phpcs": [
+			"vendor/bin/phpcs -p -s"
+		],
+		"phpcs:report": [
+			"vendor/bin/phpcs --report-file='phpcs-report.txt'"
+		],
+		"phpcbf": [
+			"vendor/bin/phpcbf -p"
+		]
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	}
 }
