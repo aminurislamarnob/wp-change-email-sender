@@ -127,8 +127,6 @@ class TestEmailController extends WP_REST_Controller {
 		/* translators: %s: site name */
 		$heading = sprintf( esc_html__( 'Test Email from %s', 'wp-change-email-sender' ), esc_html( $site_name ) );
 		$intro   = esc_html__( 'This is a test email sent by the WP Change Email Sender plugin to verify your email sender settings.', 'wp-change-email-sender' );
-		$footer  = esc_html__( 'If you received this email, your sender settings are working correctly.', 'wp-change-email-sender' );
-
 		return '<!DOCTYPE html>
 <html>
 <head><meta charset="UTF-8"></head>
@@ -156,7 +154,6 @@ class TestEmailController extends WP_REST_Controller {
 				<td style="padding:10px 16px;font-size:14px;color:#1f2937;">' . esc_html( $recipient ) . '</td>
 			</tr>
 		</table>
-		<p style="margin:24px 0 0;color:#51545e;font-size:14px;line-height:1.6;">' . $footer . '</p>
 	</td></tr>
 </table>
 </td></tr>
