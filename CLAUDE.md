@@ -26,14 +26,19 @@ chmod +x bin/build.sh
 bin/build.sh
 ```
 
-The `phpcs.xml` ruleset excludes `assets/`, `build/`, `vendor/`, `node_modules/`, `tests/`, and all `*.js`/`*.css`/`*.scss` — only `includes/`, `templates/`, and the root plugin file are linted. CI (`.github/workflows/phpcs.yml`) runs PHPCS only on PHP files changed in a PR.
+The `phpcs.xml` ruleset excludes `assets/`, `build/`, `vendor/`, `node_modules/`, `tests/`, `languages/`, and all `*.js`/`*.css`/`*.scss` — only `includes/`, `templates/`, and the root plugin file are linted. CI (`.github/workflows/phpcs.yml`) runs PHPCS only on PHP files changed in a PR.
 
 ## Architecture
 
-This is a WordPress plugin with **two parallel settings surfaces** — be careful not to conflate them:
+This is a WordPress plugin that overrides the default `wp_mail` sender name and email address. As of v3.3, all settings are managed through a single unified option.
 
-1. **Legacy settings (the part that actually changes email sender):** `includes/OverrideEmailSender.php` adds fields to **Settings → General** using the Settings API, stores values in the standalone options `wpces_email_sender_name` and `wpces_sender_email_address`, and hooks `wp_mail_from` / `wp_mail_from_name` to override the sender.
-2. **Newer React admin page (scaffolded, not yet wired to email behavior):** `includes/Admin/Settings.php` registers a top-level admin menu that renders `<div id="WpChangeEmailSenderSettings">`. `src/admin.js` mounts a React app there via HashRouter (General / Appearance / Product tabs). This surface reads/writes the option `wp_change_email_sender_settings` through a REST controller at `wp-change-email-sender/v1/settings` (`includes/Admin/REST/SettingsController.php`). **These REST settings are not consumed by `OverrideEmailSender` yet** — the React page is currently a UI shell.
+### Settings and data flow
+
+All settings live in a single `wp_change_email_sender_settings` option (an associative array). The React admin page is the primary settings UI; the legacy standalone options (`wpces_email_sender_name`, `wpces_sender_email_address`) are no longer written to but are still read as a fallback.
+
+- **React admin page:** `includes/Admin/Settings.php` registers a top-level admin menu that renders `<div id="WpChangeEmailSenderSettings">`. `src/admin.js` mounts a React app via HashRouter with two routes: General (sender name/email) and Product Settings. The app reads/writes through a REST controller at `wp-change-email-sender/v1/settings` (`includes/Admin/REST/SettingsController.php`). State is managed by a React context provider (`src/context/SettingsContext.js`).
+- **Email sender override:** `includes/OverrideEmailSender.php` hooks `wp_mail_from` / `wp_mail_from_name`. It reads from the unified option first, falling back to legacy standalone options via `get_sender_value()` — this protects installs where the 3.3 migration hasn't run yet.
+- **Upgrader:** `includes/Upgrader.php` runs on every `plugins_loaded` via `init_plugin()`. It compares the stored DB version (`wp_change_email_sender_db_version`) against the plugin version and runs one-shot, idempotent migrations. The 3.3 migration copies legacy standalone options into the unified option.
 
 ### Plugin bootstrapping pattern
 
@@ -41,7 +46,10 @@ This is a WordPress plugin with **two parallel settings surfaces** — be carefu
 
 `includes/WpChangeEmailSender.php` is a singleton that:
 - Registers activation/deactivation/REST hooks in its constructor
-- On `plugins_loaded` → `init_plugin()` → hooks `init` priority 4 → `init_classes()`
+- On `plugins_loaded` → `init_plugin()`:
+  1. Loads the text domain via `load_textdomain()`
+  2. Runs `Upgrader::maybe_upgrade()` for pending data migrations
+  3. Calls `init_hooks()` which hooks `init` priority 4 → `init_classes()`
 - Instantiates subsystems into `$this->container[...]`:
   - `scripts` → `Assets` (registers generic admin/frontend script handles — separate from the React bundle)
   - `admin_settings` → `Admin\Settings` (the React-page menu + enqueue)
@@ -58,7 +66,7 @@ PSR-4 autoload (`composer.json`): `WeLabs\WpChangeEmailSender\` → `includes/`.
 
 ### React admin bundle
 
-`webpack.config.js` extends `@wordpress/scripts` defaults with a single entry `src/admin.js` → `assets/build/admin/script.js` (plus `script.asset.php` consumed by `Admin\Settings::enqueue_admin_settings_scripts` for dependency/version detection). Styling mixes Tailwind (`tailwind.config.js`, `postcss.config.js`) with SCSS/CSS in `src/styles/` and component CSS. The enqueue is gated by `$screen->id === 'toplevel_page_wp_change_email_sender-settings'`.
+`webpack.config.js` extends `@wordpress/scripts` defaults with a single entry `src/admin.js` → `assets/build/admin/script.js` (plus `script.asset.php` consumed by `Admin\Settings::enqueue_admin_settings_scripts` for dependency/version detection). Styling uses plain CSS (`src/Components/LayoutStyles.css` and component-level CSS). The enqueue is gated by `$screen->id === 'toplevel_page_wp_change_email_sender-settings'`. ProductSettings is lazy-loaded via `React.lazy()` / code-splitting.
 
 ### Versioning
 
@@ -69,4 +77,4 @@ The plugin version lives in **three** places and must stay in sync:
 
 ### Text domain
 
-All i18n strings use the `wp-change-email-sender` text domain (enforced by `phpcs.xml`). Translations load from `/languages`.
+All i18n strings use the `wp-change-email-sender` text domain (enforced by `phpcs.xml`). The text domain is loaded explicitly in `WpChangeEmailSender::load_textdomain()` from the `/languages` directory (which contains the `.pot` file).
