@@ -48,7 +48,7 @@ const Layout = () => {
 								</div>
 								<div className="menu-title-description">
 									{ __(
-										'Set email sender name and address',
+										'Configure sender name, email and overrides',
 										'wp-change-email-sender'
 									) }
 								</div>
