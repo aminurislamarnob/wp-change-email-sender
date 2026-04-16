@@ -286,6 +286,7 @@
 }
 
 .wpces-notice {
+    box-sizing: border-box;
     width: 100%;
     margin-bottom: 16px;
 }
