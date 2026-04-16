@@ -110,7 +110,7 @@ class TestEmailController extends WP_REST_Controller {
 	}
 
 	/**
-	 * Build the HTML body for the test email.
+	 * Build the HTML body for the test email by loading the template.
 	 *
 	 * @param string $site_name      The site name.
 	 * @param string $from_name      The configured sender name.
@@ -120,46 +120,17 @@ class TestEmailController extends WP_REST_Controller {
 	 * @return string
 	 */
 	private function get_email_body( $site_name, $from_name, $from_email, $recipient, $custom_message = '' ) {
-		$from_name_label  = esc_html__( 'From Name', 'wp-change-email-sender' );
-		$from_email_label = esc_html__( 'From Email', 'wp-change-email-sender' );
-		$sent_to_label    = esc_html__( 'Sent To', 'wp-change-email-sender' );
+		$from_name_label  = __( 'From Name', 'wp-change-email-sender' );
+		$from_email_label = __( 'From Email', 'wp-change-email-sender' );
+		$sent_to_label    = __( 'Sent To', 'wp-change-email-sender' );
 
 		/* translators: %s: site name */
-		$heading = sprintf( esc_html__( 'Test Email from %s', 'wp-change-email-sender' ), esc_html( $site_name ) );
-		$intro   = esc_html__( 'This is a test email sent by the WP Change Email Sender plugin to verify your email sender settings.', 'wp-change-email-sender' );
-		return '<!DOCTYPE html>
-<html>
-<head><meta charset="UTF-8"></head>
-<body style="margin:0;padding:0;background:#f4f4f7;font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',Roboto,Helvetica,Arial,sans-serif;">
-<table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f7;padding:40px 0;">
-<tr><td align="center">
-<table width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:8px;overflow:hidden;">
-	<tr><td style="background:#5539FD;padding:24px 32px;">
-		<h1 style="margin:0;color:#ffffff;font-size:20px;font-weight:600;">' . $heading . '</h1>
-	</td></tr>
-	<tr><td style="padding:32px;">
-		<p style="margin:0 0 24px;color:#51545e;font-size:15px;line-height:1.6;">' . $intro . '</p>'
-		. ( ! empty( $custom_message ) ? '<p style="margin:0 0 24px;color:#1f2937;font-size:15px;line-height:1.6;background:#f9fafb;padding:16px;border-radius:6px;">' . nl2br( esc_html( $custom_message ) ) . '</p>' : '' ) . '
-		<table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5e7eb;border-radius:6px;overflow:hidden;">
-			<tr style="background:#f9fafb;">
-				<td style="padding:10px 16px;font-size:13px;color:#6b7280;border-bottom:1px solid #e5e7eb;width:120px;">' . $from_name_label . '</td>
-				<td style="padding:10px 16px;font-size:14px;color:#1f2937;border-bottom:1px solid #e5e7eb;">' . esc_html( $from_name ) . '</td>
-			</tr>
-			<tr>
-				<td style="padding:10px 16px;font-size:13px;color:#6b7280;border-bottom:1px solid #e5e7eb;">' . $from_email_label . '</td>
-				<td style="padding:10px 16px;font-size:14px;color:#1f2937;border-bottom:1px solid #e5e7eb;">' . esc_html( $from_email ) . '</td>
-			</tr>
-			<tr style="background:#f9fafb;">
-				<td style="padding:10px 16px;font-size:13px;color:#6b7280;">' . $sent_to_label . '</td>
-				<td style="padding:10px 16px;font-size:14px;color:#1f2937;">' . esc_html( $recipient ) . '</td>
-			</tr>
-		</table>
-	</td></tr>
-</table>
-</td></tr>
-</table>
-</body>
-</html>';
+		$heading = sprintf( __( 'Test Email from %s', 'wp-change-email-sender' ), $site_name );
+		$intro   = __( 'This is a test email sent by the WP Change Email Sender plugin to verify your email sender settings.', 'wp-change-email-sender' );
+
+		ob_start();
+		include WP_CHANGE_EMAIL_SENDER_TEMPLATE_DIR . '/test-email.php';
+		return ob_get_clean();
 	}
 
 	/**
