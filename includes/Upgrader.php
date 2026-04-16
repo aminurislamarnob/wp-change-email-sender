@@ -76,11 +76,11 @@ class Upgrader {
         }
 
         if ( empty( $settings['wp_change_email_sender_name'] ) && '' !== $legacy_name ) {
-            $settings['wp_change_email_sender_name'] = $legacy_name;
+            $settings['wp_change_email_sender_name'] = sanitize_text_field( $legacy_name );
         }
 
         if ( empty( $settings['wp_change_email_sender_email_address'] ) && '' !== $legacy_email ) {
-            $settings['wp_change_email_sender_email_address'] = $legacy_email;
+            $settings['wp_change_email_sender_email_address'] = sanitize_email( $legacy_email );
         }
 
         update_option( self::SETTINGS_OPTION, $settings );
