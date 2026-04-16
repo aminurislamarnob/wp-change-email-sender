@@ -143,12 +143,22 @@ final class WpChangeEmailSender {
      * @return void
      */
     public function init_plugin() {
+        $this->load_textdomain();
         ( new Upgrader() )->maybe_upgrade();
 
         $this->includes();
         $this->init_hooks();
 
         do_action( 'wp_change_email_sender_loaded' );
+    }
+
+    /**
+     * Load plugin text domain for translations.
+     *
+     * @return void
+     */
+    public function load_textdomain() {
+        load_plugin_textdomain( 'wp-change-email-sender', false, dirname( WP_CHANGE_EMAIL_SENDER_BASENAME ) . '/languages' );
     }
 
     /**

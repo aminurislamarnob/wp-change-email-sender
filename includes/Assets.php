@@ -17,7 +17,7 @@ class Assets {
 	}
 
 	/**
-	 * Register all Dokan scripts and styles.
+	 * Register all WP Change Email Sender scripts and styles.
 	 *
 	 * @return void
 	 */
