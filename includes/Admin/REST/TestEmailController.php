@@ -129,7 +129,20 @@ class TestEmailController extends WP_REST_Controller {
 		$intro   = __( 'This is a test email sent by the WP Change Email Sender plugin to verify your email sender settings.', 'wp-change-email-sender' );
 
 		ob_start();
-		include WP_CHANGE_EMAIL_SENDER_TEMPLATE_DIR . '/test-email.php';
+		welabs_wp_change_email_sender()->get_template(
+			'test-email.php',
+			[
+				'heading'          => $heading,
+				'intro'            => $intro,
+				'custom_message'   => $custom_message,
+				'from_name_label'  => $from_name_label,
+				'from_name'        => $from_name,
+				'from_email_label' => $from_email_label,
+				'from_email'       => $from_email,
+				'sent_to_label'    => $sent_to_label,
+				'recipient'        => $recipient,
+			]
+		);
 		return ob_get_clean();
 	}
 
