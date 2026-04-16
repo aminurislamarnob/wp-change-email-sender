@@ -34,10 +34,19 @@ This is a WordPress plugin that overrides the default `wp_mail` sender name and 
 
 ### Settings and data flow
 
-All settings live in a single `wp_change_email_sender_settings` option (an associative array). The React admin page is the primary settings UI; the legacy standalone options (`wpces_email_sender_name`, `wpces_sender_email_address`) are no longer written to but are still read as a fallback.
+All settings live in a single `wp_change_email_sender_settings` option (an associative array) with these keys:
+- `wp_change_email_sender_name` (string) — custom from name
+- `wp_change_email_sender_email_address` (string) — custom from email
+- `wp_change_email_sender_product_per_page` (string) — products per page
+- `force_from_name` (bool) — override from name set by all plugins
+- `force_from_email` (bool) — override from email set by all plugins
 
-- **React admin page:** `includes/Admin/Settings.php` registers a top-level admin menu that renders `<div id="WpChangeEmailSenderSettings">`. `src/admin.js` mounts a React app via HashRouter with two routes: General (sender name/email) and Product Settings. The app reads/writes through a REST controller at `wp-change-email-sender/v1/settings` (`includes/Admin/REST/SettingsController.php`). State is managed by a React context provider (`src/context/SettingsContext.js`).
-- **Email sender override:** `includes/OverrideEmailSender.php` hooks `wp_mail_from` / `wp_mail_from_name`. It reads from the unified option first, falling back to legacy standalone options via `get_sender_value()` — this protects installs where the 3.3 migration hasn't run yet.
+The React admin page is the primary settings UI; the legacy standalone options (`wpces_email_sender_name`, `wpces_sender_email_address`) are no longer written to but are still read as a fallback.
+
+- **React admin page:** `includes/Admin/Settings.php` registers a top-level admin menu that renders `<div id="WpChangeEmailSenderSettings">`. `src/admin.js` mounts a React app via HashRouter with two routes: General (sender name/email, force-from-name toggle, force-from-email toggle) and Product Settings. The app reads/writes through a REST controller at `wp-change-email-sender/v1/settings` (`includes/Admin/REST/SettingsController.php`). State is managed by a React context provider (`src/context/SettingsContext.js`).
+- **Email sender override:** `includes/OverrideEmailSender.php` hooks `wp_mail_from` / `wp_mail_from_name` (both at `PHP_INT_MAX` priority) and `phpmailer_init`. It reads from the unified option first, falling back to legacy standalone options via `get_sender_value()` — this protects installs where the 3.3 migration hasn't run yet. The override supports two modes:
+  - **Non-force (default):** Only replaces the WordPress defaults (`wordpress@domain` / `"WordPress"`). If another plugin (WooCommerce, CF7) sets a custom from address/name, it is respected.
+  - **Force:** Overrides all from addresses/names regardless of source. When force-from-email overrides a non-default address set by another plugin, the original address is preserved as a `Reply-To` header (via `set_reply_to_from_original_email` on `phpmailer_init`), unless a Reply-To is already set.
 - **Upgrader:** `includes/Upgrader.php` runs on every `plugins_loaded` via `init_plugin()`. It compares the stored DB version (`wp_change_email_sender_db_version`) against the plugin version and runs one-shot, idempotent migrations. The 3.3 migration copies legacy standalone options into the unified option.
 
 ### Plugin bootstrapping pattern
