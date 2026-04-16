@@ -99,6 +99,7 @@ final class WpChangeEmailSender {
 	 */
 	public function register_rest_route() {
         $this->container['admin_settings_rest']->register_routes();
+        $this->container['test_email_rest']->register_routes();
 	}
 
     /**
@@ -190,6 +191,7 @@ final class WpChangeEmailSender {
         $this->container['scripts'] = new Assets();
         $this->container['admin_settings'] = new Admin\Settings();
 		$this->container['admin_settings_rest'] = new Admin\REST\SettingsController();
+		$this->container['test_email_rest'] = new Admin\REST\TestEmailController();
 		$this->container['email_sender'] = new OverrideEmailSender();
     }
 

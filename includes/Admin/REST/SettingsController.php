@@ -89,8 +89,12 @@ class SettingsController extends WP_REST_Controller {
 			$wp_change_email_sender_settings['wp_change_email_sender_email_address'] = sanitize_email( $request->get_param( 'wp_change_email_sender_email_address' ) );
 		}
 
-		if ( $request->has_param( 'wp_change_email_sender_product_per_page' ) ) {
-			$wp_change_email_sender_settings['wp_change_email_sender_product_per_page'] = sanitize_text_field( $request->get_param( 'wp_change_email_sender_product_per_page' ) );
+		if ( $request->has_param( 'force_from_name' ) ) {
+			$wp_change_email_sender_settings['force_from_name'] = (bool) $request->get_param( 'force_from_name' );
+		}
+
+		if ( $request->has_param( 'force_from_email' ) ) {
+			$wp_change_email_sender_settings['force_from_email'] = (bool) $request->get_param( 'force_from_email' );
 		}
 
 		update_option( 'wp_change_email_sender_settings', $wp_change_email_sender_settings );
@@ -140,9 +144,14 @@ class SettingsController extends WP_REST_Controller {
 					'format'      => 'email',
 					'context'     => array( 'view', 'edit' ),
 				),
-				'wp_change_email_sender_product_per_page' => array(
-					'description' => __( 'Products Per Page.', 'wp-change-email-sender' ),
-					'type'        => 'string',
+				'force_from_name'                         => array(
+					'description' => __( 'Force from name on all emails', 'wp-change-email-sender' ),
+					'type'        => 'boolean',
+					'context'     => array( 'view', 'edit' ),
+				),
+				'force_from_email'                        => array(
+					'description' => __( 'Force from email on all emails', 'wp-change-email-sender' ),
+					'type'        => 'boolean',
 					'context'     => array( 'view', 'edit' ),
 				),
 			),

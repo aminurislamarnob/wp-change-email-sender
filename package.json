@@ -1,6 +1,6 @@
 {
 	"name": "wp-change-email-sender",
-	"version": "0.0.1",
+	"version": "3.3.0",
 	"description": "This plugin which allows you to change WordPress default mail sender name and email address easily.",
 	"author": "Aminur Islam",
 	"license": "GPLv2 or later",

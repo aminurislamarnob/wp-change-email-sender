@@ -6,8 +6,7 @@ import './public-path';
 /**
  * WordPress dependencies
  */
-import { lazy, Suspense, createRoot } from '@wordpress/element';
-import { Spinner } from '@wordpress/components';
+import { createRoot } from '@wordpress/element';
 
 /**
  * External dependencies
@@ -21,33 +20,17 @@ import './Components/LayoutStyles.css';
 import { SettingsProvider } from './context/SettingsContext';
 import Layout from './Components/Layout';
 import GeneralSettings from './Components/GeneralSettings';
-
-const ProductSettings = lazy( () =>
-	import(
-		/* webpackChunkName: "product-settings" */ './Components/ProductSettings'
-	)
-);
-
-const LazyFallback = () => (
-	<div className="wpces-loading">
-		<Spinner />
-	</div>
-);
+import SendTestEmail from './Components/SendTestEmail';
 
 const App = () => (
 	<Router>
 		<SettingsProvider>
-			<Suspense fallback={ <LazyFallback /> }>
-				<Routes>
-					<Route path="/" element={ <Layout /> }>
-						<Route index element={ <GeneralSettings /> } />
-						<Route
-							path="product-settings"
-							element={ <ProductSettings /> }
-						/>
-					</Route>
-				</Routes>
-			</Suspense>
+			<Routes>
+				<Route path="/" element={ <Layout /> }>
+					<Route index element={ <GeneralSettings /> } />
+					<Route path="test-email" element={ <SendTestEmail /> } />
+				</Route>
+			</Routes>
 		</SettingsProvider>
 	</Router>
 );
