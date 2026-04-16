@@ -89,10 +89,6 @@ class SettingsController extends WP_REST_Controller {
 			$wp_change_email_sender_settings['wp_change_email_sender_email_address'] = sanitize_email( $request->get_param( 'wp_change_email_sender_email_address' ) );
 		}
 
-		if ( $request->has_param( 'wp_change_email_sender_product_per_page' ) ) {
-			$wp_change_email_sender_settings['wp_change_email_sender_product_per_page'] = sanitize_text_field( $request->get_param( 'wp_change_email_sender_product_per_page' ) );
-		}
-
 		if ( $request->has_param( 'force_from_name' ) ) {
 			$wp_change_email_sender_settings['force_from_name'] = (bool) $request->get_param( 'force_from_name' );
 		}
@@ -146,11 +142,6 @@ class SettingsController extends WP_REST_Controller {
 					'description' => __( 'Sender Email Address.', 'wp-change-email-sender' ),
 					'type'        => 'string',
 					'format'      => 'email',
-					'context'     => array( 'view', 'edit' ),
-				),
-				'wp_change_email_sender_product_per_page' => array(
-					'description' => __( 'Products Per Page.', 'wp-change-email-sender' ),
-					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
 				'force_from_name'                         => array(

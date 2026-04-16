@@ -13,7 +13,7 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
  * Internal dependencies
  */
 import { useSettings } from '../context/SettingsContext';
-import { GearIcon, CollectionIcon } from './icons';
+import { GearIcon, EnvelopeIcon } from './icons';
 import logo from '../../assets/images/settings-logo.svg';
 
 const Layout = () => {
@@ -59,24 +59,24 @@ const Layout = () => {
 						</li>
 						<li
 							className={
-								isActive( '/product-settings' ) ? 'active' : ''
+								isActive( '/test-email' ) ? 'active' : ''
 							}
 						>
-							<Link to="/product-settings">
+							<Link to="/test-email">
 								<div className="menu-title">
 									{ __(
-										'Product',
+										'Test Email',
 										'wp-change-email-sender'
 									) }
 								</div>
 								<div className="menu-title-description">
 									{ __(
-										'List items per page',
+										'Verify your email settings',
 										'wp-change-email-sender'
 									) }
 								</div>
 								<div className="menu-icon">
-									<CollectionIcon />
+									<EnvelopeIcon />
 								</div>
 							</Link>
 						</li>

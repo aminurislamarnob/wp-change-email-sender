@@ -101,6 +101,15 @@ class Settings {
 			'before'
 		);
 
+		wp_add_inline_script(
+			$handle,
+			sprintf(
+				'window.__wpcesCurrentUserEmail = %s;',
+				wp_json_encode( wp_get_current_user()->user_email )
+			),
+			'before'
+		);
+
 		wp_enqueue_style(
 			'wp_change_email_sender_admin_styles',
 			WP_CHANGE_EMAIL_SENDER_PLUGIN_ASSET . '/build/admin.css',
