@@ -42,9 +42,9 @@ class Settings {
 	 *
 	 * @return array
 	 */
-    public function plugin_action_link( $links ){
+    public function plugin_action_link( $links ) {
         $plugin_action_links = array(
-        '<a href="' . esc_url( admin_url( 'admin.php?page=wp_change_email_sender-settings' ) ) . '"> '. __('Settings', 'wp-change-email-sender') . '</a>',
+			'<a href="' . esc_url( admin_url( 'admin.php?page=wp_change_email_sender-settings' ) ) . '"> ' . __( 'Settings', 'wp-change-email-sender' ) . '</a>',
         );
         return array_merge( $links, $plugin_action_links );
     }

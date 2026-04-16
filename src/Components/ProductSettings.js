@@ -63,10 +63,7 @@ const ProductSettings = () => {
 				<Card>
 					<CardBody>
 						{ PRODUCT_FIELDS.map( ( { key, label, help } ) => (
-							<div
-								key={ key }
-								className="wpces-settings-group"
-							>
+							<div key={ key } className="wpces-settings-group">
 								<TextControl
 									label={ label }
 									help={ help }
@@ -87,10 +84,7 @@ const ProductSettings = () => {
 							disabled={ isSaving }
 						>
 							{ isSaving && <Spinner /> }
-							{ __(
-								'Save Changes',
-								'wp-change-email-sender'
-							) }
+							{ __( 'Save Changes', 'wp-change-email-sender' ) }
 						</Button>
 					</CardBody>
 				</Card>

@@ -1,7 +1,6 @@
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
 import { Notice } from '@wordpress/components';
 
 /**
@@ -22,7 +21,7 @@ const SettingsHeader = ( { icon: Icon, title } ) => {
 			</div>
 			{ message && (
 				<Notice
-					className="w-full mb-4"
+					className="wpces-notice"
 					status="success"
 					isDismissible
 					onDismiss={ () => setMessage( '' ) }
@@ -32,7 +31,7 @@ const SettingsHeader = ( { icon: Icon, title } ) => {
 			) }
 			{ error && (
 				<Notice
-					className="w-full mb-4"
+					className="wpces-notice"
 					status="error"
 					isDismissible
 					onDismiss={ () => setError( '' ) }

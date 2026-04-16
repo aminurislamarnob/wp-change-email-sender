@@ -285,6 +285,11 @@
     align-items: center;
 }
 
+.wpces-notice {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
 .wpces-loading {
     display: flex;
     align-items: center;

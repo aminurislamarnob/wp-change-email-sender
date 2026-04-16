@@ -59,9 +59,7 @@ const Layout = () => {
 						</li>
 						<li
 							className={
-								isActive( '/product-settings' )
-									? 'active'
-									: ''
+								isActive( '/product-settings' ) ? 'active' : ''
 							}
 						>
 							<Link to="/product-settings">

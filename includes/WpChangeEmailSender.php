@@ -129,8 +129,8 @@ final class WpChangeEmailSender {
         defined( 'WP_CHANGE_EMAIL_SENDER_INC_DIR' ) || define( 'WP_CHANGE_EMAIL_SENDER_INC_DIR', WP_CHANGE_EMAIL_SENDER_DIR . '/includes' );
         defined( 'WP_CHANGE_EMAIL_SENDER_TEMPLATE_DIR' ) || define( 'WP_CHANGE_EMAIL_SENDER_TEMPLATE_DIR', WP_CHANGE_EMAIL_SENDER_DIR . '/templates' );
         defined( 'WP_CHANGE_EMAIL_SENDER_PLUGIN_ASSET' ) || define( 'WP_CHANGE_EMAIL_SENDER_PLUGIN_ASSET', plugins_url( 'assets', WP_CHANGE_EMAIL_SENDER_FILE ) );
-        defined( 'WP_CHANGE_EMAIL_SENDER_PLUGIN_ADMIN_ASSET' ) || define( 'WP_CHANGE_EMAIL_SENDER_PLUGIN_ADMIN_ASSET' , WP_CHANGE_EMAIL_SENDER_PLUGIN_ASSET . '/admin' );
-        defined( 'WP_CHANGE_EMAIL_SENDER_PLUGIN_PUBLIC_ASSET' ) || define( 'WP_CHANGE_EMAIL_SENDER_PLUGIN_PUBLIC_ASSET' , WP_CHANGE_EMAIL_SENDER_PLUGIN_ASSET . '/public' );
+        defined( 'WP_CHANGE_EMAIL_SENDER_PLUGIN_ADMIN_ASSET' ) || define( 'WP_CHANGE_EMAIL_SENDER_PLUGIN_ADMIN_ASSET', WP_CHANGE_EMAIL_SENDER_PLUGIN_ASSET . '/admin' );
+        defined( 'WP_CHANGE_EMAIL_SENDER_PLUGIN_PUBLIC_ASSET' ) || define( 'WP_CHANGE_EMAIL_SENDER_PLUGIN_PUBLIC_ASSET', WP_CHANGE_EMAIL_SENDER_PLUGIN_ASSET . '/public' );
 
         // give a way to turn off loading styles and scripts from parent theme
         defined( 'WP_CHANGE_EMAIL_SENDER_LOAD_STYLE' ) || define( 'WP_CHANGE_EMAIL_SENDER_LOAD_STYLE', true );
@@ -236,7 +236,7 @@ final class WpChangeEmailSender {
     public function get_template_path( $name ) {
         $template = untrailingslashit( WP_CHANGE_EMAIL_SENDER_TEMPLATE_DIR ) . '/' . untrailingslashit( $name );
 
-        return apply_filters( 'wp-change-email-sender_template', $template, $name );
+        return apply_filters( 'wp_change_email_sender_template', $template, $name );
     }
 
     /**
@@ -248,7 +248,7 @@ final class WpChangeEmailSender {
 			'variation_data' => $variation_data,
 			'variation' => $variation
 		] );
-     * 
+     *
      * @param mixed  $template_name
      * @param array  $args          (default: array())
      * @param string $template_path (default: '')
@@ -256,7 +256,7 @@ final class WpChangeEmailSender {
      *
      * @return void
      */
-    function get_template( $template_name, $args = [] ) {
+    public function get_template( $template_name, $args = [] ) {
         if ( $args && is_array( $args ) ) {
             extract( $args ); // phpcs:ignore
         }

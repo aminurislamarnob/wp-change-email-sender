@@ -17,8 +17,6 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 /**
  * Internal dependencies
  */
-import './styles/styles.css';
-import './styles/index.css';
 import './Components/LayoutStyles.css';
 import { SettingsProvider } from './context/SettingsContext';
 import Layout from './Components/Layout';

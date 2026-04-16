@@ -89,10 +89,7 @@ const GeneralSettings = () => {
 							disabled={ isSaving }
 						>
 							{ isSaving && <Spinner /> }
-							{ __(
-								'Save Changes',
-								'wp-change-email-sender'
-							) }
+							{ __( 'Save Changes', 'wp-change-email-sender' ) }
 						</Button>
 					</CardBody>
 				</Card>
