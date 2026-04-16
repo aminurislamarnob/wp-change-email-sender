@@ -41,7 +41,7 @@ class OverrideEmailSender {
             return $old;
         }
 
-        return esc_html( $name );
+        return sanitize_text_field( $name );
     }
 
     /**
