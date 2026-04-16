@@ -25,32 +25,31 @@ class OverrideEmailSender {
     /**
      * Change WordPress Default Mail Sender Email Address.
      *
-     * @param string $old Default from email.
+     * @param string $wp_from_email Default from email.
      * @return string
      */
-    public function wpces_mail_sender_from_email( $old ) {
+    public function wpces_mail_sender_from_email( $wp_from_email ) {
         $this->original_from_email = '';
 
-        $email = $this->get_sender_value( 'wp_change_email_sender_email_address', 'wpces_sender_email_address' );
-        $force = $this->is_forced_email();
+        $custom_from_email = $this->get_sender_value( 'wp_change_email_sender_email_address', 'wpces_sender_email_address' );
+        $is_forced_email = $this->is_forced_email();
 
-        if ( '' === $email ) {
-            return $old;
+        if ( '' === $custom_from_email ) {
+            return $wp_from_email;
         }
 
         $default_email = $this->get_default_email();
 
-        // Capture the original non-default from email so it can be
-        // preserved as Reply-To when force overrides it.
-        if ( $force && $old !== $default_email && $old !== sanitize_email( $email ) ) {
-            $this->original_from_email = $old;
+        // Capture the original non-default from email so it can be preserved as Reply-To when force overrides it.
+        if ( $is_forced_email && $wp_from_email !== $default_email && $wp_from_email !== sanitize_email( $custom_from_email ) ) {
+            $this->original_from_email = $wp_from_email;
         }
 
-        if ( $force || $old === $default_email ) {
-            return sanitize_email( $email );
+        if ( $is_forced_email || $wp_from_email === $default_email ) {
+            return sanitize_email( $custom_from_email );
         }
 
-        return $old;
+        return $wp_from_email;
     }
 
     /**
@@ -59,19 +58,19 @@ class OverrideEmailSender {
      * @param string $old Default from name.
      * @return string
      */
-    public function wpces_mail_sender_from_email_name( $old ) {
-        $name = $this->get_sender_value( 'wp_change_email_sender_name', 'wpces_email_sender_name' );
-        $force = $this->is_forced_name();
+    public function wpces_mail_sender_from_email_name( $wp_from_name ) {
+        $custom_from_name = $this->get_sender_value( 'wp_change_email_sender_name', 'wpces_email_sender_name' );
+        $is_forced_name = $this->is_forced_name();
 
-        if ( '' === $name ) {
-            return $old;
+        if ( '' === $custom_from_name ) {
+            return $wp_from_name;
         }
 
-        if ( $force || $old === 'WordPress' ) {
-            return sanitize_text_field( $name );
+        if ( $is_forced_name || $wp_from_name === 'WordPress' ) {
+            return sanitize_text_field( $custom_from_name );
         }
 
-        return $old;
+        return $wp_from_name;
     }
 
     /**
@@ -93,10 +92,10 @@ class OverrideEmailSender {
             return;
         }
 
-        $validated = filter_var( $this->original_from_email, FILTER_VALIDATE_EMAIL );
+        $validated_email = filter_var( $this->original_from_email, FILTER_VALIDATE_EMAIL );
 
-        if ( $validated ) {
-            $phpmailer->addReplyTo( $validated );
+        if ( $validated_email ) {
+            $phpmailer->addReplyTo( $validated_email );
         }
 
         // Reset for the next wp_mail() call.
