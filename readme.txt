@@ -21,6 +21,7 @@ After installation, navigate to **Settings &rarr; Change Email Sender** in the W
 * 🛡️ **Force Overrides:** Prevent misbehaving plugins (e.g., contact forms or e-commerce plugins) from hijacking your outbound email sender details.
 * ↩️ **Smart "Reply-To" Protection:** When forcing an email override, the plugin automatically captures the original sender and sets it as the "Reply-To" address so you never miss a customer reply.
 * 🧪 **Built-in Email Tester:** Instantly send a test email directly from the settings page to verify your configuration is working perfectly.
+* 💾 **Import & Export:** Securely back up your custom configurations to a JSON file or restore them instantly with the built-in drag-and-drop uploader.
 * ⚡ **Lightning Fast Dashboard:** Enjoy a stunning, single-page React interface that saves your settings instantly without page reloads.
 * 🔒 **Lightweight & Secure:** Built with the native WordPress REST API and rigorous security standards.
 
@@ -62,6 +63,7 @@ If you find this plugin useful, consider supporting its development through a [d
 * **Force Override Feature**: Added new options to forcefully override the sender name and email, even if other plugins (like WooCommerce or Contact Form 7) try to set their own.
 * **Smart Reply-To**: When forcefully overriding another plugin's custom sender email, the original email address is now automatically preserved as the `Reply-To` address so you don't lose replies.
 * **Send Test Email**: Added a "Test Email" feature complete with custom message support directly in the dashboard so you can instantly verify your configuration.
+* **Import & Export Configs**: Instantly download your exact configurations as a JSON backup, or upload a JSON settings file to safely replicate your configuration across different websites.
 * **REST API Powered**: Refactored the backend using the WordPress REST API for robust, secure, and snappy settings updates with user-friendly validation.
 
 = 3.1 =
