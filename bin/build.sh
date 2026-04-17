@@ -9,6 +9,15 @@ cd ..
 DIR=$(pwd)
 BUILD_DIR="$DIR/build/wp-change-email-sender"
 
+# Extract plugin version from wp-change-email-sender.php
+VERSION=$(grep -E '^[[:space:]]*\* Version:' "$DIR/wp-change-email-sender.php" | head -n1 | sed -E 's/.*Version:[[:space:]]*([^[:space:]]+).*/\1/')
+if [ -z "$VERSION" ]; then
+    error "Could not determine version from wp-change-email-sender.php"
+    exit 1
+fi
+
+
+
 # Enable nicer messaging for build status.
 BLUE_BOLD='\033[1;34m'
 GREEN_BOLD='\033[1;32m'
@@ -28,13 +37,6 @@ success() {
 warning() {
     echo -e "\n${YELLOW_BOLD}$1${COLOR_RESET}\n"
 }
-# Extract plugin version from wp-change-email-sender.php
-VERSION=$(grep -i '^Version:' "$DIR/wp-change-email-sender.php" | awk '{print $2}' | tr -d '\r')
-if [ -z "$VERSION" ]; then
-    error "Could not determine version from wp-change-email-sender.php"
-    exit 1
-fi
-
 
 status "💃 Time to build the Wp Change Email Sender ZIP file 🕺"
 
