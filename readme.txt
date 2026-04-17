@@ -14,7 +14,7 @@ Easily change WordPress default mail sender name and email address
 == Description ==
 
 This plugin enable you to change mail sender name and email address from WordPress default mail sender name and email.
-After install go to the "WP Change Email Sender" menu in the WordPress admin sidebar.
+After installation, navigate to **Settings &rarr; Change Email Sender** in the WordPress admin sidebar to open the modern configuration dashboard.
 
 = Plugin Features =
 * ✉️ **Custom Sender Details:** Easily replace the default "WordPress" name and "wordpress@yourdomain.com" email address with your own brand.
@@ -38,13 +38,13 @@ Installing this plugin is very easy just like any other WordPress plugin. Please
 2. Alternatively, download the plugin and upload the wp-change-email-sender.zip to your plugins directory, which usually is /wp-content/plugins/.
 3. Activate the plugin from plugins page.
 
-To change default mail sender name and email address go to the "WP Change Email Sender" menu in the WordPress admin sidebar, or use the Settings link beside the plugin on the Plugins page.
+To set up your custom email details, simply navigate to **Settings &rarr; Change Email Sender** in the WordPress admin sidebar. Alternatively, click the **Settings** link next to the plugin on the Plugins page. Our sleek, modern dashboard will load instantly, ready for your customizations!
 
 
 == Frequently Asked Questions ==
 
 = Where is the options to change mail sender name email? =
-Go to the "WP Change Email Sender" menu in the WordPress admin sidebar.
+Simply navigate to **Settings &rarr; Change Email Sender** in the WordPress admin sidebar.
 
 = Can I change only sender name or email individually? =
 Yes, you can change only mail sender name and email individually.
