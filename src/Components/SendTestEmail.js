@@ -16,6 +16,7 @@ import apiFetch from "@wordpress/api-fetch";
 import { useSettings } from "../context/SettingsContext";
 import { useDispatch } from '@wordpress/data';
 import { store as noticesStore } from '@wordpress/notices';
+import { CheckBadgeIcon, ExclamationCircleIcon } from './icons';
 
 const SEND_TEST_EMAIL_PATH = "/wp-change-email-sender/v1/send-test-email";
 
@@ -41,12 +42,20 @@ const SendTestEmail = () => {
 
         createSuccessNotice(
           response.message || __("Test email sent!", "wp-change-email-sender"),
-          { type: 'snackbar', id: 'wpces-test-success' }
+          { 
+            type: 'snackbar', 
+            id: 'wpces-test-success',
+            icon: <CheckBadgeIcon style={{ width: '24px', height: '24px', color: 'rgb(16 185 129)' }} />
+          }
         );
       } catch (err) {
         createErrorNotice(
           err.message || __("Failed to send test email.", "wp-change-email-sender"),
-          { type: 'snackbar', id: 'wpces-test-error' }
+          { 
+            type: 'snackbar', 
+            id: 'wpces-test-error',
+            icon: <ExclamationCircleIcon style={{ width: '24px', height: '24px', color: 'rgb(244 63 94)' }} />
+          }
         );
       } finally {
         setIsSending(false);

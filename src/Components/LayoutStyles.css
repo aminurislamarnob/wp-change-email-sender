@@ -420,3 +420,7 @@ html {
         transform: translate(-50%, 0);
     }
 }
+
+.wpces-admin-app .components-snackbar-list .components-snackbar {
+    margin-inline: auto !important;
+}

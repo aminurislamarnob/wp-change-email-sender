@@ -1,5 +1,9 @@
 /**
  * External dependencies
  */
-export { Cog6ToothIcon as GearIcon } from '@heroicons/react/24/outline';
-export { EnvelopeIcon } from '@heroicons/react/24/outline';
+export {
+	CheckBadgeIcon,
+	ExclamationCircleIcon,
+	Cog6ToothIcon as GearIcon,
+	EnvelopeIcon,
+} from '@heroicons/react/24/outline';
