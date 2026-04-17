@@ -53,7 +53,8 @@ status "Generating build... 👷‍♀️"
 
 # Copy all files
 status "Copying files... ✌️"
-FILES=(wp-change-email-sender.php readme.txt dist includes templates assets languages composer.json composer.lock)
+FILES=(wp-change-email-sender.php readme.txt dist includes templates assets languages composer.json composer.lock package.json package-lock.json)
+
 
 for file in ${FILES[@]}; do
     if [ -f "$file" ] || [ -d "$file" ]; then
@@ -68,6 +69,7 @@ composer install --optimize-autoloader --no-dev -q
 
 # Remove composer files
 rm composer.json composer.lock
+rm package-lock.json
 
 # go one up, to the build dir
 status "Creating archive... 🎁"
