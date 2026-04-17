@@ -17,8 +17,12 @@ This plugin enable you to change mail sender name and email address from WordPre
 After install go to the "WP Change Email Sender" menu in the WordPress admin sidebar.
 
 = Plugin Features =
-* Change WordPress default mail sender name.
-* Change WordPress default mail sender email address.
+* **Custom Sender Details:** Easily replace the default "WordPress" name and "wordpress@yourdomain.com" email address with your own brand.
+* **Force Overrides:** Prevent misbehaving plugins (e.g., contact forms or e-commerce plugins) from hijacking your outbound email sender details.
+* **Smart "Reply-To" Protection:** When forcing an email override, the plugin automatically captures the original sender and sets it as the "Reply-To" address so you never miss a customer reply.
+* **Built-in Email Tester:** Instantly send a test email directly from the settings page to verify your configuration is working perfectly.
+* **Lightning Fast Dashboard:** Enjoy a stunning, single-page React interface that saves your settings instantly without page reloads.
+* **Lightweight & Secure:** Built with the native WordPress REST API and rigorous security standards.
 
 == Screenshots ==
 
