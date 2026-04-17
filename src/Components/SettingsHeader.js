@@ -8,38 +8,26 @@ import { Notice } from '@wordpress/components';
  */
 import { useSettings } from '../context/SettingsContext';
 
-const SettingsHeader = ( { icon: Icon, title } ) => {
-	const { message, error, setMessage, setError } = useSettings();
-
+const SettingsHeader = ( { icon: Icon, title, subTitle, actions } ) => {
 	return (
-		<>
+		<div className="wpces-header-wrapper">
 			<div className="settings-header">
-				<div className="settings-header-icon">
-					<Icon />
+				<div className="settings-header-inner">
+					<div className="header-text-column">
+						<div className="header-title-container">
+							{ Icon && (
+								<div className="settings-header-icon">
+									<Icon />
+								</div>
+							) }
+							<h2>{ title }</h2>
+						</div>
+						{ subTitle && <p className="header-subtitle">{ subTitle }</p> }
+					</div>
+					{ actions && <div className="header-actions">{ actions }</div> }
 				</div>
-				<h2>{ title }</h2>
 			</div>
-			{ message && (
-				<Notice
-					className="wpces-notice"
-					status="success"
-					isDismissible
-					onDismiss={ () => setMessage( '' ) }
-				>
-					{ message }
-				</Notice>
-			) }
-			{ error && (
-				<Notice
-					className="wpces-notice"
-					status="error"
-					isDismissible
-					onDismiss={ () => setError( '' ) }
-				>
-					{ error }
-				</Notice>
-			) }
-		</>
+		</div>
 	);
 };
 

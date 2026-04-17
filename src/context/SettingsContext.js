@@ -11,6 +11,8 @@ import {
 } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 import { __ } from '@wordpress/i18n';
+import { useDispatch } from '@wordpress/data';
+import { store as noticesStore } from '@wordpress/notices';
 
 const SETTINGS_PATH = '/wp-change-email-sender/v1/settings';
 
@@ -20,8 +22,7 @@ export const SettingsProvider = ( { children } ) => {
 	const [ settings, setSettings ] = useState( {} );
 	const [ isLoading, setIsLoading ] = useState( true );
 	const [ isSaving, setIsSaving ] = useState( false );
-	const [ message, setMessage ] = useState( '' );
-	const [ error, setError ] = useState( '' );
+	const { createSuccessNotice, createErrorNotice } = useDispatch( noticesStore );
 
 	useEffect( () => {
 		let cancelled = false;
@@ -32,11 +33,10 @@ export const SettingsProvider = ( { children } ) => {
 
 				if ( ! cancelled ) {
 					setSettings( response ?? {} );
-					setError( '' );
 				}
 			} catch ( err ) {
 				if ( ! cancelled ) {
-					setError( err.message );
+					createErrorNotice( err.message, { type: 'snackbar', id: 'wpces-fetch-error' } );
 				}
 			} finally {
 				if ( ! cancelled ) {
@@ -50,12 +50,10 @@ export const SettingsProvider = ( { children } ) => {
 		return () => {
 			cancelled = true;
 		};
-	}, [] );
+	}, [ createErrorNotice ] );
 
 	const saveSettings = useCallback( async ( data ) => {
 		setIsSaving( true );
-		setMessage( '' );
-		setError( '' );
 
 		try {
 			const response = await apiFetch( {
@@ -65,28 +63,25 @@ export const SettingsProvider = ( { children } ) => {
 			} );
 
 			setSettings( response ?? {} );
-			setMessage(
-				__( 'Settings saved successfully!', 'wp-change-email-sender' )
+			createSuccessNotice(
+				__( 'Settings saved successfully!', 'wp-change-email-sender' ),
+				{ type: 'snackbar', id: 'wpces-save-success' }
 			);
 		} catch ( err ) {
-			setError( err.message );
+			createErrorNotice( err.message, { type: 'snackbar', id: 'wpces-save-error' } );
 		} finally {
 			setIsSaving( false );
 		}
-	}, [] );
+	}, [ createSuccessNotice, createErrorNotice ] );
 
 	const value = useMemo(
 		() => ( {
 			settings,
 			isLoading,
 			isSaving,
-			message,
-			error,
-			setMessage,
-			setError,
 			saveSettings,
 		} ),
-		[ settings, isLoading, isSaving, message, error, saveSettings ]
+		[ settings, isLoading, isSaving, saveSettings ]
 	);
 
 	return (

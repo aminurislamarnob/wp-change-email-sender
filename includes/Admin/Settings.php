@@ -24,14 +24,13 @@ class Settings {
 	 * @return void
 	 */
 	public function add_admin_settings_menu() {
-        add_menu_page(
-            __( 'Wp Change Email Sender Settings', 'wp-change-email-sender' ),
-            __( 'Wp Change Email Sender', 'wp-change-email-sender' ),
+        add_options_page(
+            __( 'WP Change Email Sender Settings', 'wp-change-email-sender' ),
+            __( 'Change Email Sender', 'wp-change-email-sender' ),
             'manage_options',
             'wp_change_email_sender-settings',
             array( $this, 'settings_page_content' ),
-            'dashicons-admin-generic',
-            55.5
+			1
         );
 	}
 
@@ -44,9 +43,9 @@ class Settings {
 	 */
     public function plugin_action_link( $links ) {
         $plugin_action_links = array(
-			'<a href="' . esc_url( admin_url( 'admin.php?page=wp_change_email_sender-settings' ) ) . '"> ' . __( 'Settings', 'wp-change-email-sender' ) . '</a>',
+			'<a href="' . esc_url( admin_url( 'options-general.php?page=wp_change_email_sender-settings' ) ) . '"> ' . __( 'Settings', 'wp-change-email-sender' ) . '</a>',
         );
-        return array_merge( $links, $plugin_action_links );
+        return array_merge( $plugin_action_links, $links );
     }
 
 	/**
@@ -55,12 +54,7 @@ class Settings {
 	 * @return void
 	 */
 	public function settings_page_content() {
-		?>
-		<div class="wrap">
-			<h1><?php esc_html_e( 'WP Change Email Sender Settings', 'wp-change-email-sender' ); ?></h1>
-			<div id="WpChangeEmailSenderSettings"></div>
-		</div>
-		<?php
+		echo '<div id="WpChangeEmailSenderSettings"></div>';
 	}
 
 	/**
@@ -71,7 +65,7 @@ class Settings {
 	public function enqueue_admin_settings_scripts() {
 		$screen = get_current_screen();
 
-		if ( 'toplevel_page_wp_change_email_sender-settings' !== $screen->id ) {
+		if ( 'settings_page_wp_change_email_sender-settings' !== $screen->id ) {
 			return;
 		}
 

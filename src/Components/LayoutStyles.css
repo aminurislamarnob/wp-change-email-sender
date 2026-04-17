@@ -27,102 +27,198 @@
 
 .wpces-setting-wrapper main {
     position: relative;
-    background: #fff;
-    padding: 32px 24px;
+    background: #f0f0f1;
+    padding: 0; /* Clear padding to allow full-width header */
     flex: 1 1 auto;
-    max-width: 1230px;
+    max-width: 100%; /* Allow full width */
 }
 
-.sidebar-logo {
-    padding: 32px 0 24px;
-    text-align: center;
+.wpces-header-wrapper {
+    background: #fff;
+    border-bottom: 1px solid #dcdcde;
+    width: 100%;
 }
 
-.wpces-sidebar-nav nav ul li a {
-    position: relative;
-    display: block;
-    padding: 16px 44px 18px 20px;
+.settings-header {
+    background: #fff;
+    padding: 24px 40px;
+}
+
+.settings-header-inner {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-text-column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.settings_page_wp_change_email_sender-settings div#wpcontent {
+    padding-inline-start: 0;
+}
+
+.wpces-content-body {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.notices-container {
+    max-width: 700px;
+    min-width: 700px;
+    margin-bottom: 24px;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.wpces-hash-nav {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #dcdcde;
+}
+
+.wpces-hash-nav a {
     text-decoration: none;
-    color: #0A2540;
-    border-top: 1px solid #e0e4e9;
-    border-left: 2px solid transparent;
-    overflow: hidden;
-    transition: all 100ms ease-out;
-    -webkit-transition: all 100ms ease-out;
+    color: #646970;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 0 0 12px 0;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease;
 }
 
-.wpces-sidebar-nav nav ul li a:focus, .wpces-sidebar-nav nav ul li a:visited, .wpces-sidebar-nav nav ul li a:active{
-    outline: none;
+.wpces-hash-nav a:hover {
+    color: #1d2327;
+}
+
+.wpces-hash-nav a:focus {
+    outline: 0;
     box-shadow: none;
 }
 
-.wpces-sidebar-nav nav ul li a .menu-icon {
-    position: absolute;
-    top: calc(50% - 12px);
-    right: 18px;
-    text-align: center;
-    font-size: 1.4375rem;
-    line-height: 1;
-    color: #0A2540;
-    opacity: .4;
-    transition: all 150ms ease-out;
-    -webkit-transition: all 150ms ease-out;
+.wpces-hash-nav a.is-active {
+    color: #5539FD;
+    border-bottom: 3px solid #5539FD;
 }
-.menu-icon svg {
-    width: 22px;
-    height: 22px;
-}
-.settings-header {
+
+.header-title-container {
     display: flex;
     align-items: center;
-    position: relative;
-    border-bottom: 1px solid #e0e4e9;
-    padding-bottom: 24px;
-    margin-bottom: 30px;
+}
+
+.header-subtitle {
+    margin: 0;
+    font-size: 13px;
+    color: #646970;
+    line-height: 1.5;
+}
+
+.header-actions {
+    display: flex;
+    gap: 12px;
 }
 
 .settings-header h2 {
-    font-size: 24px;
+    font-size: 20px;
     margin: 0;
-    line-height: 1;
-    color: #0A2540;
+    line-height: 1.4;
+    color: #1d2327;
     font-weight: 600;
 }
 
-.settings-header::before {
-    content: "";
-    position: absolute;
-    display: block;
-    width: 48px;
-    height: 2px;
-    bottom: -1px;
-    left: 0;
-    background: #5539FD;
-}
 .settings-header-icon {
     display: inline-flex;
-    width: 48px;
-    height: 48px;
-    margin-right: 24px;
-    background: rgb(85 57 253 / 20%);
-    color: #5539FD;
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    color: #1d2327;
     text-align: center;
-    border-radius: 3px;
     align-items: center;
     justify-content: center;
 }
 
 .settings-header-icon svg {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
 }
-.wpces-sidebar-nav nav ul li.active a {
-    color: #0A2540;
-    background: #fff;
-    border-left: 2px solid #5539FD;
+
+.wpces-section {
+    margin-bottom: 24px;
+    max-width: 700px;
+    min-width: 700px;
 }
-.wpces-setting-wrapper label{
-    color: #0A2540;
+
+.wpces-section-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    color: #1d2327;
+}
+
+.wpces-section-description {
+    font-size: 14px;
+    color: #646970;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.wpces-form-header-card {
+    margin-bottom: 10px;
+}
+
+.wpces-form-header-card .wpces-form-section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 24px;
+}
+
+.wpces-form-section-body {
+    padding: 24px !important;
+}
+
+.wpces-setting-wrapper .components-card {
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+.wpces-setting-wrapper label {
+    color: #1d2327;
+}
+
+.wpces-setting-wrapper .components-button.is-primary {
+    background: #5539FD;
+}
+
+.wpces-setting-wrapper .components-button.is-primary:hover {
+    background: #635BFF;
+}
+
+.wpces-setting-wrapper .components-form-toggle .components-form-toggle__thumb {
+    background-color: #1d2327;
+}
+
+.wpces-setting-wrapper .components-form-toggle.is-checked .components-form-toggle__thumb {
+    background-color: #fff;
+}
+
+.wpces-setting-wrapper .components-form-toggle .components-form-toggle__track {
+    border-color: #1d2327;
+}
+
+.wpces-setting-wrapper .components-form-toggle.is-checked .components-form-toggle__track {
+    background: #5539FD;
+    border-color: #5539FD;
 }
 
 .wpces-sidebar-nav nav ul li {
@@ -201,29 +297,32 @@
     padding: 0;
 }
 
-/* Section heading and description (settings subsections) */
-.wpces-section-title {
-    margin-top: 16px;
-    margin-bottom: 8px;
-    font-weight: 600;
-}
 
-.wpces-section-title:first-child {
-    margin-top: 0;
-}
-
-.wpces-section-description {
-    margin-bottom: 12px;
-    color: #757575;
-    font-size: 12px;
-}
 .wpces-settings-group {
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 24px;
 }
-.wpces-settings-group p, .wpces-settings-group.admin-area-access .components-base-control.components-toggle-control {
-    margin: 0!important;
+
+.wpces-settings-group .components-toggle-control .components-base-control__field {
+    margin-bottom: 4px;
+}
+
+.wpces-settings-group .components-toggle-control .components-toggle-control__label {
+    font-size: 14px;
+    color: #1e1e1e;
+    font-weight: 400;
+}
+
+.wpces-settings-group .components-toggle-control .components-base-control__help {
+    margin: 0 0 0 0 !important;
+    font-size: 13px;
+    color: #646970;
+    line-height: 1.5;
+}
+
+.wpces-settings-group .components-text-control__help, .wpces-settings-group .components-base-control__help {
+    font-size: 13px;
+    color: #646970;
+    margin-top: 6px;
 }
 .wpces-settings-sec-header {
     margin-bottom: 20px;
@@ -296,4 +395,28 @@
     align-items: center;
     justify-content: center;
     min-height: 200px;
+}
+
+.components-editor-notices__snackbar {
+    position: fixed !important;
+    bottom: 32px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 100000 !important;
+    justify-content: center !important;
+    animation: wpces-snackbar-slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+@keyframes wpces-snackbar-slide-up {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
 }

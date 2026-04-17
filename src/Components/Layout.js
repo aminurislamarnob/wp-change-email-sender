@@ -1,97 +1,93 @@
 /**
  * WordPress dependencies
  */
+import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { Spinner } from '@wordpress/components';
-
-/**
- * External dependencies
- */
+import { Spinner, Button } from '@wordpress/components';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import { SnackbarList } from '@wordpress/components';
+import { useSelect, useDispatch } from '@wordpress/data';
+import { store as noticesStore } from '@wordpress/notices';
 
 /**
  * Internal dependencies
  */
 import { useSettings } from '../context/SettingsContext';
-import { GearIcon, EnvelopeIcon } from './icons';
-import logo from '../../assets/images/settings-logo.svg';
+import { EnvelopeIcon } from './icons';
+import SettingsHeader from './SettingsHeader';
 
 const Layout = () => {
-	const location = useLocation();
 	const { isLoading } = useSettings();
+	const location = useLocation();
 	const isActive = ( path ) => location.pathname === path;
 
+	const notices = useSelect( ( select ) => select( noticesStore ).getNotices() );
+	const { removeNotice } = useDispatch( noticesStore );
+
+	// Filter only our snackbar notices
+	const snackbarNotices = notices.filter( ( notice ) => notice.type === 'snackbar' );
+
 	return (
-		<div className="wpces-setting-wrapper">
-			<section className="wpces-sidebar-nav">
-				<div className="sidebar-logo">
-					<img
-						src={ logo }
-						alt={ __(
-							'WP Change Email Sender',
-							'wp-change-email-sender'
-						) }
-						className="layout-logo"
-						width="163"
-						height="44"
-					/>
-				</div>
-				<nav>
-					<ul>
-						<li className={ isActive( '/' ) ? 'active' : '' }>
-							<Link to="/">
-								<div className="menu-title">
-									{ __(
-										'General',
-										'wp-change-email-sender'
-									) }
-								</div>
-								<div className="menu-title-description">
-									{ __(
-										'Configure sender name, email and overrides',
-										'wp-change-email-sender'
-									) }
-								</div>
-								<div className="menu-icon">
-									<GearIcon />
-								</div>
-							</Link>
-						</li>
-						<li
-							className={
-								isActive( '/test-email' ) ? 'active' : ''
-							}
+		<div className="wpces-admin-app">
+			<SettingsHeader
+				icon={ EnvelopeIcon }
+				title={ __( 'Change Email Sender', 'wp-change-email-sender' ) }
+				subTitle={ __(
+					'Configure your global email sender details and test your outgoing email functionality.',
+					'wp-change-email-sender'
+				) }
+				actions={
+					<>
+						<Button
+							variant="secondary"
+							href="https://github.com/aminurislamarnob/wp-change-email-sender"
+							target="_blank"
 						>
-							<Link to="/test-email">
-								<div className="menu-title">
-									{ __(
-										'Test Email',
-										'wp-change-email-sender'
-									) }
-								</div>
-								<div className="menu-title-description">
-									{ __(
-										'Verify your email settings',
-										'wp-change-email-sender'
-									) }
-								</div>
-								<div className="menu-icon">
-									<EnvelopeIcon />
-								</div>
-							</Link>
-						</li>
-					</ul>
-				</nav>
-			</section>
-			<main>
+							{ __( 'Documentation', 'wp-change-email-sender' ) }
+						</Button>
+						<Button
+							variant="primary"
+							href="https://buymeacoffee.com/aiarnob"
+							target="_blank"
+						>
+							{ __( 'Donate', 'wp-change-email-sender' ) }
+						</Button>
+					</>
+				}
+			/>
+
+			<main className="wpces-main-content wpces-setting-wrapper">
 				{ isLoading ? (
 					<div className="wpces-loading">
 						<Spinner />
 					</div>
 				) : (
-					<Outlet />
+					<div className="wpces-content-body">
+						<div className="wpces-hash-nav">
+							<Link
+								to="/"
+								className={ isActive( '/' ) ? 'is-active' : '' }
+							>
+								{ __( 'General Settings', 'wp-change-email-sender' ) }
+							</Link>
+							<Link
+								to="/send-test-email"
+								className={ isActive( '/send-test-email' ) ? 'is-active' : '' }
+							>
+								{ __( 'Send Test Email', 'wp-change-email-sender' ) }
+							</Link>
+						</div>
+
+						<Outlet />
+					</div>
 				) }
 			</main>
+			
+			<SnackbarList
+				notices={ snackbarNotices }
+				className="components-editor-notices__snackbar"
+				onRemove={ removeNotice }
+			/>
 		</div>
 	);
 };

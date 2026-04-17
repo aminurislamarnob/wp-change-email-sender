@@ -8,9 +8,6 @@ import './public-path';
  */
 import { createRoot } from '@wordpress/element';
 
-/**
- * External dependencies
- */
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
 /**
@@ -23,16 +20,16 @@ import GeneralSettings from './Components/GeneralSettings';
 import SendTestEmail from './Components/SendTestEmail';
 
 const App = () => (
-	<Router>
-		<SettingsProvider>
+	<SettingsProvider>
+		<Router>
 			<Routes>
 				<Route path="/" element={ <Layout /> }>
 					<Route index element={ <GeneralSettings /> } />
-					<Route path="test-email" element={ <SendTestEmail /> } />
+					<Route path="send-test-email" element={ <SendTestEmail /> } />
 				</Route>
 			</Routes>
-		</SettingsProvider>
-	</Router>
+		</Router>
+	</SettingsProvider>
 );
 
 document.addEventListener( 'DOMContentLoaded', () => {
