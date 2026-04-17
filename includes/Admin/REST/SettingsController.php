@@ -90,7 +90,7 @@ class SettingsController extends WP_REST_Controller {
 
 		if ( $request->has_param( 'wp_change_email_sender_email_address' ) ) {
 			$email = $request->get_param( 'wp_change_email_sender_email_address' );
-			if ( ! is_email( $email ) ) {
+			if ( ! empty( $email ) && ! is_email( $email ) ) {
 				return new WP_Error( 'rest_invalid_param', __( 'The email address you entered is invalid.', 'wp-change-email-sender' ), array( 'status' => 400 ) );
 			}
 			$wp_change_email_sender_settings['wp_change_email_sender_email_address'] = sanitize_email( $email );
