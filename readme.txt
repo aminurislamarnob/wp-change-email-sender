@@ -52,8 +52,13 @@ If you find this plugin useful, consider supporting its development through a [d
 == Changelog ==
 
 = 3.3 =
-* Moved sender name and sender email address settings from Settings &rarr; General to the dedicated "WP Change Email Sender" admin page.
-* Added automatic migration of existing sender settings on plugin update.
+* **Modernized Admin Dashboard**: Rebuilt the settings page as a fast, single-page React application with a premium native-like design.
+* **Unified Settings**: Moved sender name and sender email address settings from Settings &rarr; General to our dedicated "WP Change Email Sender" admin page.
+* **Automatic Migration**: Seamlessly migrates your existing sender settings to the new system upon plugin update.
+* **Force Override Feature**: Added new options to forcefully override the sender name and email, even if other plugins (like WooCommerce or Contact Form 7) try to set their own.
+* **Smart Reply-To**: When forcefully overriding another plugin's custom sender email, the original email address is now automatically preserved as the `Reply-To` address so you don't lose replies.
+* **Send Test Email**: Added a "Test Email" feature complete with custom message support directly in the dashboard so you can instantly verify your configuration.
+* **REST API Powered**: Refactored the backend using the WordPress REST API for robust, secure, and snappy settings updates with user-friendly validation.
 
 = 3.1 =
 * Checked with latest version of WordPress.
