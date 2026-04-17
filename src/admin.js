@@ -18,6 +18,7 @@ import { SettingsProvider } from './context/SettingsContext';
 import Layout from './Components/Layout';
 import GeneralSettings from './Components/GeneralSettings';
 import SendTestEmail from './Components/SendTestEmail';
+import ImportExport from './Components/ImportExport';
 
 const App = () => (
 	<SettingsProvider>
@@ -26,6 +27,7 @@ const App = () => (
 				<Route path="/" element={ <Layout /> }>
 					<Route index element={ <GeneralSettings /> } />
 					<Route path="send-test-email" element={ <SendTestEmail /> } />
+					<Route path="import-export" element={ <ImportExport /> } />
 				</Route>
 			</Routes>
 		</Router>

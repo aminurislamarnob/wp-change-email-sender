@@ -57,7 +57,7 @@ export const SettingsProvider = ({ children }) => {
   }, [createErrorNotice]);
 
   const saveSettings = useCallback(
-    async (data) => {
+    async (data, customMessage) => {
       setIsSaving(true);
 
       try {
@@ -69,7 +69,7 @@ export const SettingsProvider = ({ children }) => {
 
         setSettings(response ?? {});
         createSuccessNotice(
-          __("Settings saved successfully!", "wp-change-email-sender"),
+          customMessage ?? __("Settings saved successfully!", "wp-change-email-sender"),
           {
             type: "snackbar",
             id: "wpces-save-success",
