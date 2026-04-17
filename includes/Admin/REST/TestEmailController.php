@@ -4,6 +4,8 @@ namespace WeLabs\WpChangeEmailSender\Admin\REST;
 
 use WP_Error;
 use WP_REST_Controller;
+use WP_REST_Request;
+use WP_REST_Response;
 use WP_REST_Server;
 
 /**
@@ -56,8 +58,8 @@ class TestEmailController extends WP_REST_Controller {
 	/**
 	 * Send a test email.
 	 *
-	 * @param \WP_REST_Request $request Full details about the request.
-	 * @return \WP_REST_Response|WP_Error The response or error object.
+	 * @param WP_REST_Request $request Full details about the request.
+	 * @return WP_REST_Response|WP_Error The response or error object.
 	 */
 	public function send_test_email( $request ) {
 		$recipient = sanitize_email( $request->get_param( 'recipient' ) );
@@ -169,7 +171,6 @@ class TestEmailController extends WP_REST_Controller {
 				'recipient' => array(
 					'description' => __( 'Recipient email address for the test email.', 'wp-change-email-sender' ),
 					'type'        => 'string',
-					'format'      => 'email',
 					'required'    => true,
 					'context'     => array( 'edit' ),
 				),
