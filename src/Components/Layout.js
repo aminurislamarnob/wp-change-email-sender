@@ -75,6 +75,12 @@ const Layout = () => {
               >
                 {__("Send Test Email", "wp-change-email-sender")}
               </Link>
+              <Link
+                to="/import-export"
+                className={isActive("/import-export") ? "is-active" : ""}
+              >
+                {__("Import / Export", "wp-change-email-sender")}
+              </Link>
             </div>
 
             <Outlet />
