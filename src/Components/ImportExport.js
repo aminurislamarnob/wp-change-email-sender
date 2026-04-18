@@ -76,13 +76,13 @@ const ImportExport = () => {
 
         // Basic validation to ensure it's an object
         if (typeof importedSettings !== "object" || importedSettings === null) {
-          throw new Error("Invalid format");
+          throw new Error(__("Invalid format: The file must contain a JSON object.", "wp-change-email-sender"));
         }
 
         const payload = pickAllowed(importedSettings);
 
         if (Object.keys(payload).length === 0) {
-          throw new Error("No valid settings found");
+          throw new Error(__("No valid settings found in this file.", "wp-change-email-sender"));
         }
 
         await saveSettings(
@@ -90,17 +90,15 @@ const ImportExport = () => {
           __("Settings imported successfully.", "wp-change-email-sender")
         );
       } catch (error) {
-        createErrorNotice(
-          __(
-            "Invalid settings file. Please upload a valid JSON file.",
-            "wp-change-email-sender",
-          ),
-          {
-            type: "snackbar",
-            id: "wpces-import-error",
-            icon: <ExclamationCircleIcon style={{ width: '24px', height: '24px', color: 'rgb(244 63 94)' }} />,
-          },
-        );
+        const errorMessage = error instanceof Error 
+          ? error.message 
+          : __("Invalid settings file. Please upload a valid JSON file.", "wp-change-email-sender");
+
+        createErrorNotice(errorMessage, {
+          type: "snackbar",
+          id: "wpces-import-error",
+          icon: <ExclamationCircleIcon style={{ width: '24px', height: '24px', color: 'rgb(244 63 94)' }} />,
+        });
       }
 
       // Reset input
