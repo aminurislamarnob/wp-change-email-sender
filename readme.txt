@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/aiarnob
 Tags: wp change email sender, wp change default email sender, wordpress default email sender change, wp default email change, wp default email sender name change
 Requires at least: 5.8
 Tested up to: 6.9
-Stable tag: 3.2
+Stable tag: 3.3.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -14,11 +14,16 @@ Easily change WordPress default mail sender name and email address
 == Description ==
 
 This plugin enable you to change mail sender name and email address from WordPress default mail sender name and email.
-After install go to Settings->General.
+After installation, navigate to **Settings &rarr; Change Email Sender** in the WordPress admin sidebar to open the modern configuration dashboard.
 
 = Plugin Features =
-* Change WordPress default mail sender name.
-* Change WordPress default mail sender email address.
+* ✉️ **Custom Sender Details:** Easily replace the default "WordPress" name and "wordpress@yourdomain.com" email address with your own brand.
+* 🛡️ **Force Overrides:** Prevent misbehaving plugins (e.g., contact forms or e-commerce plugins) from hijacking your outbound email sender details.
+* ↩️ **Smart "Reply-To" Protection:** When forcing an email override, the plugin automatically captures the original sender and sets it as the "Reply-To" address so you never miss a customer reply.
+* 🧪 **Built-in Email Tester:** Instantly send a test email directly from the settings page to verify your configuration is working perfectly.
+* 💾 **Import & Export:** Securely back up your custom configurations to a JSON file or restore them instantly with the built-in drag-and-drop uploader.
+* ⚡ **Lightning Fast Dashboard:** Enjoy a stunning, single-page React interface that saves your settings instantly without page reloads.
+* 🔒 **Lightweight & Secure:** Built with the native WordPress REST API and rigorous security standards.
 
 == Screenshots ==
 
@@ -34,13 +39,13 @@ Installing this plugin is very easy just like any other WordPress plugin. Please
 2. Alternatively, download the plugin and upload the wp-change-email-sender.zip to your plugins directory, which usually is /wp-content/plugins/.
 3. Activate the plugin from plugins page.
 
-To change default mail sender name and email address go to Settings->General or this plugin settings link from plugins page beside deactive link.
+To set up your custom email details, simply navigate to **Settings &rarr; Change Email Sender** in the WordPress admin sidebar. Alternatively, click the **Settings** link next to the plugin on the Plugins page. Our sleek, modern dashboard will load instantly, ready for your customizations!
 
 
 == Frequently Asked Questions ==
 
 = Where is the options to change mail sender name email? =
-Go to general settings page from WP admin panel left sidebar menu: Settings->General.
+Simply navigate to **Settings &rarr; Change Email Sender** in the WordPress admin sidebar.
 
 = Can I change only sender name or email individually? =
 Yes, you can change only mail sender name and email individually.
@@ -51,9 +56,24 @@ If you find this plugin useful, consider supporting its development through a [d
 
 == Changelog ==
 
+= 3.3 =
+* **Modernized Admin Dashboard**: Rebuilt the settings page as a fast, single-page React application with a premium native-like design.
+* **Unified Settings**: Moved sender name and sender email address settings from Settings &rarr; General to our dedicated "WP Change Email Sender" admin page.
+* **Automatic Migration**: Seamlessly migrates your existing sender settings to the new system upon plugin update.
+* **Force Override Feature**: Added new options to forcefully override the sender name and email, even if other plugins (like WooCommerce or Contact Form 7) try to set their own.
+* **Smart Reply-To**: When forcefully overriding another plugin's custom sender email, the original email address is now automatically preserved as the `Reply-To` address so you don't lose replies.
+* **Send Test Email**: Added a "Test Email" feature complete with custom message support directly in the dashboard so you can instantly verify your configuration.
+* **Import & Export Configs**: Instantly download your exact configurations as a JSON backup, or upload a JSON settings file to safely replicate your configuration across different websites.
+* **REST API Powered**: Refactored the backend using the WordPress REST API for robust, secure, and snappy settings updates with user-friendly validation.
+
 = 3.1 =
 * Checked with latest version of WordPress.
 
 = 3.0 =
 * Few security update.
 * Checked with latest version of WordPress.
+
+== Upgrade Notice ==
+
+= 3.3 =
+Sender settings have moved to a dedicated "WP Change Email Sender" admin menu. Your existing values migrate automatically on update. Back up your database before updating as a best practice.
