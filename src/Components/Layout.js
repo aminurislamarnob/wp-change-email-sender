@@ -52,7 +52,7 @@ const Layout = () => {
               href="https://buymeacoffee.com/aiarnob"
               target="_blank"
             >
-              {__("Donate", "wp-change-email-sender")}
+              {__("Support Me", "wp-change-email-sender")}
             </Button>
           </>
         }

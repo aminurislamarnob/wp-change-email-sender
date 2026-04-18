@@ -56,7 +56,7 @@ If you find this plugin useful, consider supporting its development through a [d
 
 == Changelog ==
 
-= 3.3 =
+= 3.3.0 =
 * **Modernized Admin Dashboard**: Rebuilt the settings page as a fast, single-page React application with a premium native-like design.
 * **Unified Settings**: Moved sender name and sender email address settings from Settings &rarr; General to our dedicated "WP Change Email Sender" admin page.
 * **Automatic Migration**: Seamlessly migrates your existing sender settings to the new system upon plugin update.
@@ -65,6 +65,9 @@ If you find this plugin useful, consider supporting its development through a [d
 * **Send Test Email**: Added a "Test Email" feature complete with custom message support directly in the dashboard so you can instantly verify your configuration.
 * **Import & Export Configs**: Instantly download your exact configurations as a JSON backup, or upload a JSON settings file to safely replicate your configuration across different websites.
 * **REST API Powered**: Refactored the backend using the WordPress REST API for robust, secure, and snappy settings updates with user-friendly validation.
+
+= 3.2 =
+* Checked with latest version of WordPress.
 
 = 3.1 =
 * Checked with latest version of WordPress.
@@ -75,5 +78,5 @@ If you find this plugin useful, consider supporting its development through a [d
 
 == Upgrade Notice ==
 
-= 3.3 =
-Sender settings have moved to a dedicated "WP Change Email Sender" admin menu. Your existing values migrate automatically on update. Back up your database before updating as a best practice.
+= 3.3.0 =
+We've upgraded to a lightning-fast, dedicated premium React dashboard! All your existing sender settings will automatically and seamlessly migrate over as soon as you update.
