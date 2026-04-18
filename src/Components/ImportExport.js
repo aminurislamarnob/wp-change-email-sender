@@ -10,7 +10,12 @@ import { store as noticesStore } from "@wordpress/notices";
 /**
  * Internal dependencies
  */
-import { ArrowDownTrayIcon, ArrowUpTrayIcon, CheckBadgeIcon, ExclamationCircleIcon } from "./icons";
+import {
+  ArrowDownTrayIcon,
+  ArrowUpTrayIcon,
+  CheckBadgeIcon,
+  ExclamationCircleIcon,
+} from "./icons";
 import { useSettings } from "../context/SettingsContext";
 
 const ALLOWED_KEYS = [
@@ -22,7 +27,7 @@ const ALLOWED_KEYS = [
 
 const pickAllowed = (obj) =>
   Object.fromEntries(
-    Object.entries(obj).filter(([key]) => ALLOWED_KEYS.includes(key))
+    Object.entries(obj).filter(([key]) => ALLOWED_KEYS.includes(key)),
   );
 
 const ImportExport = () => {
@@ -50,7 +55,15 @@ const ImportExport = () => {
         {
           type: "snackbar",
           id: "wpces-export-success",
-          icon: <CheckBadgeIcon style={{ width: '24px', height: '24px', color: 'rgb(16 185 129)' }} />,
+          icon: (
+            <CheckBadgeIcon
+              style={{
+                width: "24px",
+                height: "24px",
+                color: "rgb(16 185 129)",
+              }}
+            />
+          ),
         },
       );
     } catch (error) {
@@ -59,7 +72,11 @@ const ImportExport = () => {
         {
           type: "snackbar",
           id: "wpces-export-error",
-          icon: <ExclamationCircleIcon style={{ width: '24px', height: '24px', color: 'rgb(244 63 94)' }} />,
+          icon: (
+            <ExclamationCircleIcon
+              style={{ width: "24px", height: "24px", color: "rgb(244 63 94)" }}
+            />
+          ),
         },
       );
     }
@@ -76,29 +93,49 @@ const ImportExport = () => {
 
         // Basic validation to ensure it's an object
         if (typeof importedSettings !== "object" || importedSettings === null) {
-          throw new Error(__("Invalid format: The file must contain a JSON object.", "wp-change-email-sender"));
+          throw new Error(
+            __(
+              "Invalid format: The file must contain a JSON object.",
+              "wp-change-email-sender",
+            ),
+          );
         }
 
         const payload = pickAllowed(importedSettings);
 
         if (Object.keys(payload).length === 0) {
-          throw new Error(__("No valid settings found in this file.", "wp-change-email-sender"));
+          throw new Error(
+            __(
+              "No valid settings found in this file.",
+              "wp-change-email-sender",
+            ),
+          );
         }
 
         await saveSettings(
           payload,
-          __("Settings imported successfully.", "wp-change-email-sender")
+          __("Settings imported successfully.", "wp-change-email-sender"),
         );
       } catch (error) {
-        const errorMessage = error instanceof Error 
-          ? error.message 
-          : __("Invalid settings file. Please upload a valid JSON file.", "wp-change-email-sender");
-
-        createErrorNotice(errorMessage, {
-          type: "snackbar",
-          id: "wpces-import-error",
-          icon: <ExclamationCircleIcon style={{ width: '24px', height: '24px', color: 'rgb(244 63 94)' }} />,
-        });
+        createErrorNotice(
+          __(
+            "Invalid settings file. Please upload a valid JSON file.",
+            "wp-change-email-sender",
+          ),
+          {
+            type: "snackbar",
+            id: "wpces-import-error",
+            icon: (
+              <ExclamationCircleIcon
+                style={{
+                  width: "24px",
+                  height: "24px",
+                  color: "rgb(244 63 94)",
+                }}
+              />
+            ),
+          },
+        );
       }
 
       // Reset input
@@ -127,9 +164,17 @@ const ImportExport = () => {
 
       <Card>
         <CardBody className="wpces-form-section-body">
-          <div className="wpces-settings-group" style={{ marginBottom: "32px" }}>
-            <h4 style={{ marginTop: 0, marginBottom: "8px" }}>{__("Export Settings", "wp-change-email-sender")}</h4>
-            <p className="wpces-setting-description" style={{ marginBottom: "16px" }}>
+          <div
+            className="wpces-settings-group"
+            style={{ marginBottom: "32px" }}
+          >
+            <h4 style={{ marginTop: 0, marginBottom: "8px" }}>
+              {__("Export Settings", "wp-change-email-sender")}
+            </h4>
+            <p
+              className="wpces-setting-description"
+              style={{ marginBottom: "16px" }}
+            >
               {__(
                 "Download your current email sender configurations as a JSON file. This is useful for backups or transferring settings to another site.",
                 "wp-change-email-sender",
@@ -138,7 +183,9 @@ const ImportExport = () => {
             <Button
               variant="primary"
               icon={
-                <ArrowDownTrayIcon style={{ width: "18px", marginRight: "6px" }} />
+                <ArrowDownTrayIcon
+                  style={{ width: "18px", marginRight: "6px" }}
+                />
               }
               onClick={handleExport}
             >
@@ -146,9 +193,21 @@ const ImportExport = () => {
             </Button>
           </div>
 
-          <div className="wpces-settings-group" style={{ borderTop: "1px solid #e2e8f0", paddingTop: "32px", marginBottom: 0 }}>
-            <h4 style={{ marginTop: 0, marginBottom: "8px" }}>{__("Import Settings", "wp-change-email-sender")}</h4>
-            <p className="wpces-setting-description" style={{ marginBottom: "16px" }}>
+          <div
+            className="wpces-settings-group"
+            style={{
+              borderTop: "1px solid #e2e8f0",
+              paddingTop: "32px",
+              marginBottom: 0,
+            }}
+          >
+            <h4 style={{ marginTop: 0, marginBottom: "8px" }}>
+              {__("Import Settings", "wp-change-email-sender")}
+            </h4>
+            <p
+              className="wpces-setting-description"
+              style={{ marginBottom: "16px" }}
+            >
               {__(
                 "Restore your settings by uploading a previously exported JSON file. Note: This will overwrite your current configurations.",
                 "wp-change-email-sender",
@@ -167,7 +226,11 @@ const ImportExport = () => {
               variant="secondary"
               isBusy={isSaving}
               disabled={isSaving}
-              icon={<ArrowUpTrayIcon style={{ width: "18px", marginRight: "6px" }} />}
+              icon={
+                <ArrowUpTrayIcon
+                  style={{ width: "18px", marginRight: "6px" }}
+                />
+              }
               onClick={() => fileInputRef.current?.click()}
             >
               {__("Import Settings", "wp-change-email-sender")}
