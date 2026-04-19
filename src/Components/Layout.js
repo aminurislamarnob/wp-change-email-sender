@@ -3,7 +3,7 @@
  */
 import { useState, useEffect } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
-import { Spinner, Button } from "@wordpress/components";
+import { Spinner, Button, Card, CardBody } from "@wordpress/components";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { SnackbarList } from "@wordpress/components";
 import { useSelect, useDispatch } from "@wordpress/data";
@@ -60,8 +60,21 @@ const Layout = () => {
 
       <main className="wpces-main-content wpces-setting-wrapper">
         {isLoading ? (
-          <div className="wpces-loading">
-            <Spinner />
+          <div className="wpces-content-body">
+            <div className="wpces-hash-nav">
+              <div className="wpces-skeleton-tab" style={{ width: "120px" }}></div>
+              <div className="wpces-skeleton-tab" style={{ width: "116px" }}></div>
+              <div className="wpces-skeleton-tab" style={{ width: "110px" }}></div>
+            </div>
+            <div className="wpces-section">
+              <Card>
+                <CardBody className="wpces-form-section-body">
+                  <div className="wpces-loading">
+                    <Spinner />
+                  </div>
+                </CardBody>
+              </Card>
+            </div>
           </div>
         ) : (
           <div className="wpces-content-body">

@@ -110,6 +110,24 @@ html {
     border-bottom: 3px solid #5539FD;
 }
 
+.wpces-skeleton-tab {
+    height: 16px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    margin-bottom: 13px; /* Mimics 10px padding + 3px border */
+    margin-top: 2px;
+    animation: wpces-pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes wpces-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
 .header-title-container {
     display: flex;
     align-items: center;
