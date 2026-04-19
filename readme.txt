@@ -27,8 +27,10 @@ After installation, navigate to **Settings &rarr; Change Email Sender** in the W
 
 == Screenshots ==
 
-1. Plugin Options
-1. Mail Example
+1. Plugin Settings -> General Settings
+2. Plugin Settings -> Send Test Email
+3. Plugin Settings -> Import / Export
+4. Mail Example
 
 
 == Installation ==
