@@ -1,13 +1,3 @@
-/**
- * WordPress dependencies
- */
-import { Notice } from '@wordpress/components';
-
-/**
- * Internal dependencies
- */
-import { useSettings } from '../context/SettingsContext';
-
 const SettingsHeader = ( { icon: Icon, title, subTitle, actions } ) => {
 	return (
 		<div className="wpces-header-wrapper">

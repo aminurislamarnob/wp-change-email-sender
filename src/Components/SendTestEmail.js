@@ -13,7 +13,6 @@ import {
 } from "@wordpress/components";
 import apiFetch from "@wordpress/api-fetch";
 
-import { useSettings } from "../context/SettingsContext";
 import { useDispatch } from '@wordpress/data';
 import { store as noticesStore } from '@wordpress/notices';
 import { CheckBadgeIcon, ExclamationCircleIcon } from './icons';

@@ -1,7 +1,6 @@
 /**
  * WordPress dependencies
  */
-import { useState, useEffect } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
 import { Spinner, Button, Card, CardBody } from "@wordpress/components";
 import { Link, Outlet, useLocation } from "react-router-dom";
