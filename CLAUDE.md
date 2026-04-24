@@ -28,12 +28,14 @@ Keys: `wp_change_email_sender_name`, `wp_change_email_sender_email_address`, `fo
 
 ## React Admin
 
-`src/admin.js` → `HashRouter` with 3 routes, all inside `<Layout>`:
+`src/admin.js` → `SettingsProvider` > `HashRouter` > nested routes under `<Layout>`:
 - `/` → `GeneralSettings`
 - `/send-test-email` → `SendTestEmail`
 - `/import-export` → `ImportExport`
 
-**State:** `SettingsContext` (`useSettings()`) — exposes `settings`, `isLoading`, `isSaving`, `saveSettings(data, customMessage?)`.
+**State:** `SettingsContext` (`useSettings()`) — exposes `settings`, `isLoading`, `isSaving`, `saveSettings(data, customMessage?)`. Provider sits outside `HashRouter` so context is available to all routes.
+
+**SettingsHeader:** reusable component (`src/Components/SettingsHeader.js`) rendered by `Layout`. Props: `{ icon, title, subTitle, actions }`. Displays plugin header with icon, title, subtitle, and action buttons.
 
 **Icons:** Always import from `./icons` (re-exports `@heroicons/react/24/outline`), never directly from heroicons.
 
