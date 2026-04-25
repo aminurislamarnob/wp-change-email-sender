@@ -46,7 +46,7 @@ const Layout = () => {
           <>
             <Button
               variant="secondary"
-              href="https://github.com/aminurislamarnob/wp-change-email-sender/docs/usage.md"
+              href="https://github.com/aminurislamarnob/wp-change-email-sender/blob/develop/docs/usage.md"
               target="_blank"
             >
               {__("Documentation", "wp-change-email-sender")}
