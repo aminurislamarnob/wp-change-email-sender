@@ -12,7 +12,12 @@ import { store as noticesStore } from "@wordpress/notices";
  * Internal dependencies
  */
 import { useSettings } from "../context/SettingsContext";
-import { EnvelopeIcon } from "./icons";
+import {
+  EnvelopeIcon,
+  Cog6ToothIcon,
+  EnvelopeOpenIcon,
+  ArrowsRightLeftIcon,
+} from "./icons";
 import SettingsHeader from "./SettingsHeader";
 
 const Layout = () => {
@@ -25,7 +30,7 @@ const Layout = () => {
 
   // Filter only our snackbar notices
   const snackbarNotices = notices.filter(
-    (notice) => notice.type === "snackbar",
+    (notice) => notice.type === "snackbar"
   );
 
   return (
@@ -35,13 +40,13 @@ const Layout = () => {
         title={__("WP Change Email Sender", "wp-change-email-sender")}
         subTitle={__(
           "Configure your global email sender details and test your outgoing email functionality.",
-          "wp-change-email-sender",
+          "wp-change-email-sender"
         )}
         actions={
           <>
             <Button
               variant="secondary"
-              href="https://github.com/aminurislamarnob/wp-change-email-sender"
+              href="https://github.com/aminurislamarnob/wp-change-email-sender/docs/usage.md"
               target="_blank"
             >
               {__("Documentation", "wp-change-email-sender")}
@@ -61,9 +66,18 @@ const Layout = () => {
         {isLoading ? (
           <div className="wpces-content-body">
             <div className="wpces-hash-nav">
-              <div className="wpces-skeleton-tab" style={{ width: "120px" }}></div>
-              <div className="wpces-skeleton-tab" style={{ width: "116px" }}></div>
-              <div className="wpces-skeleton-tab" style={{ width: "110px" }}></div>
+              <div
+                className="wpces-skeleton-tab"
+                style={{ width: "120px" }}
+              ></div>
+              <div
+                className="wpces-skeleton-tab"
+                style={{ width: "116px" }}
+              ></div>
+              <div
+                className="wpces-skeleton-tab"
+                style={{ width: "110px" }}
+              ></div>
             </div>
             <div className="wpces-section">
               <Card>
@@ -79,18 +93,21 @@ const Layout = () => {
           <div className="wpces-content-body">
             <div className="wpces-hash-nav">
               <Link to="/" className={isActive("/") ? "is-active" : ""}>
+                <Cog6ToothIcon />
                 {__("General Settings", "wp-change-email-sender")}
               </Link>
               <Link
                 to="/send-test-email"
                 className={isActive("/send-test-email") ? "is-active" : ""}
               >
+                <EnvelopeOpenIcon />
                 {__("Send Test Email", "wp-change-email-sender")}
               </Link>
               <Link
                 to="/import-export"
                 className={isActive("/import-export") ? "is-active" : ""}
               >
+                <ArrowsRightLeftIcon />
                 {__("Import / Export", "wp-change-email-sender")}
               </Link>
             </div>

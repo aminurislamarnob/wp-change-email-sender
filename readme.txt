@@ -47,10 +47,22 @@ To set up your custom email details, simply navigate to **Settings &rarr; Change
 == Frequently Asked Questions ==
 
 = Where is the options to change mail sender name email? =
-Simply navigate to **Settings &rarr; Change Email Sender** in the WordPress admin sidebar.
+Simply navigate to **Settings > Change Email Sender** in the WordPress admin sidebar.
 
 = Can I change only sender name or email individually? =
 Yes, you can change only mail sender name and email individually.
+
+= My emails still show the old sender — what should I check? =
+Enable both **Force From Name** and **Force From Email** on the General Settings screen. Without those toggles, the plugin only replaces the WordPress default sender and lets other plugins (e.g. WooCommerce, Contact Form 7) keep their own sender values.
+
+= Will enabling "Force From Email" break reply threads in WooCommerce? =
+No. When Force From Email overrides a non-default address set by another plugin, the original address is automatically added as the `Reply-To` header, so replies still reach the correct destination.
+
+= Can I use a different sender per email type? =
+Not directly — this plugin sets a single global sender. We will add this feature ASAP.
+
+= I migrated from an older version — will my settings carry over? =
+Yes. The plugin automatically migrates the legacy standalone options into the unified setting on first load after updating. No manual action is required.
 
 == Support ==
 If you find this plugin useful, consider supporting its development through a [donation](https://www.buymeacoffee.com/aiarnob).
