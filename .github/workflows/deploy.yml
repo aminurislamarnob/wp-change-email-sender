@@ -22,9 +22,16 @@ jobs:
           coverage: none
           tools: composer:v2
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
       - name: Install dependencies and build
         run: |
           composer install --no-dev --optimize-autoloader
+          npm install
+          npm run build
 
       - name: Create plugin zip
         run: |
