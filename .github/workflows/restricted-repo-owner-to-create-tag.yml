@@ -3,7 +3,7 @@ name: Restrict Tag Creation to Owners
 on:
   push:
     tags:
-      - '*'   # This triggers the workflow when any tag is pushed
+      - "*" # This triggers the workflow when any tag is pushed
 
 jobs:
   restrict-tags:
@@ -14,7 +14,7 @@ jobs:
         run: |
           # Get the username of the person who triggered the push
           actor=$(echo $GITHUB_ACTOR)
-          
+
           # Call GitHub API to check the user's role (Owner/Admin)
           permission=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             https://api.github.com/repos/${{ github.repository }}/collaborators/$actor/permission \
