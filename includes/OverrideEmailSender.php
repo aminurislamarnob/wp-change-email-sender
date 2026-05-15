@@ -46,7 +46,8 @@ class OverrideEmailSender {
         }
 
         if ( $is_forced_email || $wp_from_email === $default_email ) {
-            return sanitize_email( $custom_from_email );
+            $clean = sanitize_email( $custom_from_email );
+            return '' !== $clean ? $clean : $wp_from_email;
         }
 
         return $wp_from_email;

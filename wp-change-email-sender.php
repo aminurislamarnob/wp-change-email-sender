@@ -3,7 +3,7 @@
  * Plugin Name: WP Change Email Sender
  * Plugin URI:  https://wordpress.org/plugins/wp-change-email-sender/
  * Description: This plugin which allows you to change WordPress default mail sender name and email address easily.
- * Version: 3.3.0
+ * Version: 3.3.1
  * Author: Aminur Islam
  * Author URI: https://github.com/aminurislamarnob/
  * Text Domain: wp-change-email-sender
