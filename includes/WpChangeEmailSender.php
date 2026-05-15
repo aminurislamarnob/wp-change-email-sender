@@ -14,7 +14,7 @@ final class WpChangeEmailSender {
      *
      * @var string
      */
-    public $version = '3.3.0';
+    public $version = '3.3.1';
 
     /**
      * Instance of self

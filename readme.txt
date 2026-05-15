@@ -4,7 +4,7 @@ Donate link: https://www.buymeacoffee.com/aiarnob
 Tags: wp change email sender, wp change default email sender, wordpress default email sender change, wp default email change, wp default email sender name change
 Requires at least: 5.8
 Tested up to: 6.9
-Stable tag: 3.3.0
+Stable tag: 3.3.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -69,6 +69,10 @@ If you find this plugin useful, consider supporting its development through a [d
 
 
 == Changelog ==
+
+= 3.3.1 =
+* Fix: After upgrading from 3.2, emails sent by other plugins (e.g. WooCommerce, contact forms) could be rejected by SMTP relays because the configured sender was not being applied. Restored 3.2 behaviour by enabling "Force From Name" and "Force From Email" automatically on upgrade. You can change these toggles from the plugin's settings page if you want other plugins' sender addresses to be preserved.
+* Hardening: Fall back to the original sender if the saved sender email becomes empty after sanitisation, preventing silent send failures.
 
 = 3.3.0 =
 * **Modernized Admin Dashboard**: Rebuilt the settings page as a fast, single-page React application with a premium native-like design.
